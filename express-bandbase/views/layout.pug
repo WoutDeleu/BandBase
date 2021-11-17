@@ -2,6 +2,7 @@ doctype html
 html
   head
     title Band Base
+    title=BandBase
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/stylesheets/style.css')
@@ -12,12 +13,13 @@ html
       .w3-row-padding img {margin-bottom: 12px}
       .w3-sidebar {width: 120px;background: #222;}
       #main {margin-left: 120px}
+      @media only screen and (max-width: 600px){#main{margin-left:0}}
+
 
   body.w3-black
     block nav
 
     block content
-
 
 
 
