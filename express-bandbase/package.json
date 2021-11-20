@@ -17,7 +17,7 @@
     "luxon": "^2.1.1",
     "mongodb": "^4.1.4",
     "mongoose": "^6.0.13",
-    "morgan": "~1.9.1",
+    "morgan": "^1.10.0",
     "pug": "^2.0.4"
   },
   "devDependencies": {

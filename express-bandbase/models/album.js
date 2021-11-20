@@ -9,7 +9,7 @@ var AlbumSchema = new Schema({
 });
 //Virtual for the album name
 AlbumSchema
-    .virtual('title')
+    .virtual('album')
     .get(function () {
         return this.title;
     });
@@ -25,7 +25,7 @@ AlbumSchema
     });
 
 AlbumSchema
-    .virtual('title')
+    .virtual('album')
     .get(function () {
         return this.title;
     });
