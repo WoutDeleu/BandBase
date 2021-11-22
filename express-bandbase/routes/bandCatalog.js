@@ -39,7 +39,7 @@ router.get('/albums', album_controller.album_list);
 /// AUTHOR ROUTES ///
 
 // GET request for creating Artist. NOTE This must come before route for id (i.e. display author).
-router.get('/artist/create', artist_controller.artist_create_get);
+router.get('artist', artist_controller.artist_create_get);
 
 // POST request for creating Artist.
 router.post('/artist/create', artist_controller.artist_create_post);

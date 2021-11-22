@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+const {DateTime} = require("luxon");
+
 
 var Schema = mongoose.Schema;
 
@@ -15,13 +17,12 @@ AlbumSchema
     });
 
 //Virtual for the release
-AlbumSchema
-    .virtual('release')
-    .get(function () {
+AlbumSchema.virtual('release').get(function () {
         var releaseDate = '';
         if (this.date_of_release){
             releaseDate = DateTime.fromJSDate()(this.date_of_release).toLocaleString(DateTime.DATE_MED);
         }
+        return releaseDate;
     });
 
 AlbumSchema

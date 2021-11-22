@@ -14,13 +14,18 @@ exports.index = function(req, res) {
             Album.countDocuments({}, callback);
         },
     }, function(err, results) {
-        res.render('discover', { title: 'Local Library Home', error: err, data: results });
+        res.render('discover', { title: 'Local Bands Home', error: err, data: results });
     });
 };
 
 // Display list of all Artists.
 exports.album_list = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist list');
+    Artist.find()
+        .sort([['title', 'ascending']])
+        .exec(function(err, list_albums){
+            if(err){return next(err);}
+            res.render('album_list', {title:'Album List', album_list: list_albums});
+        });
 }
 
 // Display detail page for a specific Artist.

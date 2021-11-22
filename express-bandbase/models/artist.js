@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ArtistSchema = new Schema({
-    naam: {type: String, required: true, maxLength: 20},
+    name: {type: String, required: true, maxLength: 20},
     since: {type: Date},
     stillActive: {type: String, required: true, enum: ['Still Rocking', 'Stopped'], default: 'Still Rocking'},
 });
