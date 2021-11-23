@@ -7,7 +7,9 @@ var Schema = mongoose.Schema;
 var AlbumSchema = new Schema({
     title: {type: String, required: true, maxLength: 20},
     artist: {type: String, required: true, maxLength: 20},
-    date_of_release: {type: Date},
+    genre: {type: String,required: true, maxLength: 20},
+    date_of_release: {type: Date,required: true},
+
 });
 //Virtual for the album name
 AlbumSchema
@@ -35,7 +37,7 @@ AlbumSchema
 AlbumSchema
     .virtual('url')
     .get(function () {
-        return '/bandCatalog/album'+this._id;
+        return '/discover/album'+this._id;
     });
 
 

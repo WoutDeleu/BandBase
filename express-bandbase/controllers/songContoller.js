@@ -7,7 +7,12 @@ var async = require('async');
 
 // Display list of all Artists.
 exports.song_list = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Song list');
+    Song.find()
+        .sort([['title','ascending']])
+        .exec(function (err, list_song){
+            if(err){return next(err); }
+            res.render('song_list', {title: 'Song List', genre_list: list_song})
+        });
 }
 
 // Display detail page for a specific Artist.

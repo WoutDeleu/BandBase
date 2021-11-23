@@ -20,13 +20,16 @@ exports.artist_list = function(req, res, next) {
 exports.artist_detail = function(req, res, next) {
 
     async.parallel({
-        artist: function(callback){
-            Artist.findById(req.params.id).exec(callback)
+        artist: function(callback) {
+            Artist.findById(req.params.id)
+                .exec(callback);
         },
         artist_album: function (callback){
-            Artist.find({'artist': req.params.id}).exec(callback)
+            Artist.find({ 'artist': req.params.id})
+                .exec(callback);
         },
-    },function (err,results){
+
+    }, function (err,results){
         if (err){return next(err); }
         if (results.artist==null){
             var err = new Error('Artist not found');
@@ -44,34 +47,48 @@ exports.artist_create_get = function(req, res, next) {
 };
 
 // Handle Artist create on POST.
-exports.artist_create_post = function(req, res, next) {
+exports.artist_create_post = [
     
-    body('name').trim();isLenght({min: 1}).escape().withMessage('Band name must be specified'),
+    body('name').trim().isLength({min: 1}).escape().withMessage('Band name must be specified'),
     body('since', 'Invalid date of origin').optional({ checkFalsy: true }).isISO8601().toDate(),
-    body('stillActive').escape;    
+    body('stillActive').escape,
     
     // Process request after validation and sanitization
     (req, res, next) => {
-        const error = validationResult(req);
-        
+        const errors = validationResult(req);
+
+        var artist = new Artist(
+            {   name: req.body.name,
+                since: req.body.since,
+                stillActive: req.body.stillActive
+            }
+        );
         if (!errors.isEmpty()){
             res.render('author_form',{title: 'Create Artist', artist: req.body, errors: errors.array()});
             return;
         }
         else{
-            var artist = new Artist(
-                {
-                    name: req.body.name,
-                    since: req.body.since,
-                    stillActive: req.body.stillActive
+            Artist.findOne({'name':req.body.name})
+                .exec(function (err, found_artist) {
+                    if(err) {return next(err);}
+
+                    if(found_artist){
+                        res.redirect(found_artist.url);
+                    }
+                    else{
+                        
+                        artist.save(function (err){
+                            if(err) { return next(err);}
+                            //Artist saved redirect to genre detail page
+                            res.redirect(artist.url);
+                        });
+
+                    }
+
                 });
-            artist.save(function (err){
-                if(err) { return next(err);}
-                res.redirect(author.url);
-            });
         }
     }
-};
+];
 
 // Display Artist delete form on GET.
 exports.artist_delete_get = function(req, res, next) {

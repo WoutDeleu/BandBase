@@ -1,25 +1,25 @@
-extends layout
+extends discover
 block nav
     nav.w3-sidebar.w3-bar-block.w3-small.w3-hide-small.w3-center
-        a(href='./introscreen')
-            img(src = './images/LogoResized.png' style='width:100%').
-        a(href='./news').w3-bar-item.w3-button.w3-padding-large.w3-black NEWS
-            a(href='./about').w3-bar-item.w3-button.w3-padding-large.w3-hover-black ABOUT
-            hr
-            a(href='./mybands').w3-bar-item.w3-button.w3-padding-large.w3-hover-black MY BANDS
-            a(href='./discover').w3-bar-item.w3-button.w3-padding-large.w3-hover-black DISCOVER
+        a(href='/introscreen')
+            img(src = '/images/LogoResized.png' style='width:100%').
+        a(href='/news').w3-bar-item.w3-button.w3-padding-large.w3-black NEWS
+        a(href='/about').w3-bar-item.w3-button.w3-padding-large.w3-hover-black ABOUT
+        hr
+        a(href='/mybands').w3-bar-item.w3-button.w3-padding-large.w3-hover-black MY BANDS
+        a(href='/discover').w3-bar-item.w3-button.w3-padding-large.w3-hover-black DISCOVER
     div.w3-top.w3-hide-large.w3-hide-medium#myNavBar
         div.w3-bar.w3-black.w3-opacity.w3-hover-opacity-off.w3-center.w3-small
-            a(href='./introscreen').w3-bar-item.w3-button HOME
+            a(href='/introscreen').w3-bar-item.w3-button HOME
                 style.
                     {width:25%}
-            a(href='./news').w3-bar-item.w3-button NEWS
+            a(href='/news').w3-bar-item.w3-button NEWS
                 style.
                     {width: 25%}
             a(href='news.html').w3-bar-item.w3-button MY BANDS
                 style.
                     {width: 25%}
-            a(href='news.html').w3-bar-item.w3-button DISCOVER
+            a(href='/discover').w3-bar-item.w3-button DISCOVER
                 style.
                     {width: 25%}
 
@@ -37,14 +37,18 @@ block content
     div#main.w3-padding-large
         div#home.w3-container.w3-padding-32.w3-center.w3-black
             h1 #{title}
-
-            form(method='POST' action='')
-                div.form-group
+            form(method='POST' action='').w3-container.w3-padding-32.w3-center.w3-black
+                div.w3-center
                     label(for='name') Genre:
-                    input#name.form-control(type='text', placeholder='Heavy Metal, Hard Rock etc.' name='name' value=(undefined===genre ? '' : genre.name))
-                button.btn.btn-primary(type='submit') Submit
+                    input#name(type='text', placeholder='Heavy Metal, Hard Rock etc.' name='name' value=(undefined === genre ? '' : genre.name))
+                button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Submit
 
             if errors
                 ul
                     for error in errors
-                        li!= error.msg
+                            li!= error.msg
+
+
+
+
+

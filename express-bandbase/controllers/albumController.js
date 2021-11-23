@@ -1,5 +1,7 @@
 var Album = require('../models/album');
 var Artist = require('../models/artist');
+var Song = require('../models/song');
+var Genre = require('../models/genre');
 const { body,validationResult } = require('express-validator');
 
 var async = require('async');
@@ -13,6 +15,13 @@ exports.index = function(req, res) {
         album_count: function(callback) {
             Album.countDocuments({}, callback);
         },
+        song_count: function(callback) {
+            Song.countDocuments({}, callback); // Pass an empty object as match condition to find all documents of this collection
+        },
+        genre_count: function(callback) {
+            Genre.countDocuments({}, callback);
+        },
+        
     }, function(err, results) {
         res.render('discover', { title: 'Local Bands Home', error: err, data: results });
     });
@@ -30,35 +39,35 @@ exports.album_list = function(req, res, next) {
 
 // Display detail page for a specific Artist.
 exports.album_detail = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Album detail: ' + req.params.id);
+    res.send('NOT IMPLEMENTED: Album detail');
 };
 
 // Display Artist create form on GET.
 exports.album_create_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist create GET');
+    res.send('NOT IMPLEMENTED: Album create GET');
 };
 
 // Handle Artist create on POST.
 exports.album_create_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist create POST');
+    res.send('NOT IMPLEMENTED: Album create POST');
 };
 
 // Display Artist delete form on GET.
 exports.album_delete_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist delete GET');
+    res.send('NOT IMPLEMENTED: Album delete GET');
 };
 
 // Handle Artist delete on POST.
 exports.album_delete_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist delete POST');
+    res.send('NOT IMPLEMENTED: Album delete POST');
 };
 
 // Display Artist update form on GET.
 exports.album_update_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist update GET');
+    res.send('NOT IMPLEMENTED: Album update GET');
 };
 
 // Handle Artist update on POST.
 exports.album_update_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist update POST');
+    res.send('NOT IMPLEMENTED: Album update POST');
 };

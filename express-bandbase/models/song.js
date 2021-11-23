@@ -4,7 +4,7 @@ const {DateTime} = require("luxon");
 var Schema = mongoose.Schema;
 
 var SongSchema = new Schema({
-    name: {type: String, required: true, maxLength: 20},
+    title: {type: String, required: true, maxLength: 20},
     data_of_release: {type: Date},
 });
 //Virtual for the album name
@@ -34,7 +34,7 @@ SongSchema
 SongSchema
     .virtual('url')
     .get(function () {
-        return '/bandCatalog/song'+this._id;
+        return '/discover/song'+this._id;
     });
 
 
