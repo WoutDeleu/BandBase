@@ -13,6 +13,11 @@ var aboutRouter = require('./routes/about');
 
 var app = express();
 
+//Favicon
+var favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname, 'public', 'images', 'LogoResized.ico')));
+
+
 //Set up mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = "mongodb+srv://dbUserBB:0j1fkrOPakUKniye@cluster0.amopb.mongodb.net/band_base?retryWrites=true&w=majority";
@@ -36,6 +41,7 @@ app.use('/introScreen', introRouter);
 app.use('/news', newsRouter);
 app.use('/discover', discoverRouter);
 app.use('/about', aboutRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
