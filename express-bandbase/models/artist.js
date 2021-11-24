@@ -1,4 +1,7 @@
+//Require Mongoose
 var mongoose = require('mongoose');
+
+const {DateTime} = require("luxon");
 
 var Schema = mongoose.Schema;
 
@@ -20,7 +23,7 @@ ArtistSchema
 ArtistSchema
     .virtual('url')
     .get(function () {
-        return '/discover/artist' +this._id;
+        return '/discover/artist' + this._id;
     });
 
 //Export model

@@ -37,22 +37,29 @@ exports.album_list = function(req, res, next) {
         });
 }
 
-// Display detail page for a specific Artist.
+// Display detail page for a specific Album.
 exports.album_detail = function(req, res, next) {
     res.send('NOT IMPLEMENTED: Album detail');
 };
 
-// Display Artist create form on GET.
+// Display Album create form on GET.
 exports.album_create_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Album create GET');
+    async.parallel({
+        artists: function (callback) {
+            Artist.find(callback);
+        },
+    },function(err, results){
+        if(err){return next(err); }
+        res.render('album_form', {title: 'Create Album', albums: results.artists});
+    })
 };
 
-// Handle Artist create on POST.
+// Handle Album create on POST.
 exports.album_create_post = function(req, res, next) {
     res.send('NOT IMPLEMENTED: Album create POST');
 };
 
-// Display Artist delete form on GET.
+// Display Album delete form on GET.
 exports.album_delete_get = function(req, res, next) {
     res.send('NOT IMPLEMENTED: Album delete GET');
 };

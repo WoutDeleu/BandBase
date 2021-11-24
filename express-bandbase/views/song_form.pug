@@ -1,0 +1,61 @@
+extends discover
+block nav
+    nav.w3-sidebar.w3-bar-block.w3-small.w3-hide-small.w3-center
+        a(href='/introscreen')
+            img(src = '/images/LogoResized.png' style='width:100%').
+        a(href='/news').w3-bar-item.w3-button.w3-padding-large.w3-hover-black NEWS
+        a(href='/about').w3-bar-item.w3-button.w3-padding-large.w3-hover-black ABOUT
+        hr
+        a(href='/mybands').w3-bar-item.w3-button.w3-padding-large.w3-hover-black MY BANDS
+        a(href='/discover').w3-bar-item.w3-button.w3-padding-large.w3-black DISCOVER
+    div.w3-top.w3-hide-large.w3-hide-medium#myNavBar
+        div.w3-bar.w3-black.w3-opacity.w3-hover-opacity-off.w3-center.w3-small
+            a(href='/introscreen').w3-bar-item.w3-button HOME
+                style.
+                    {width:25%}
+            a(href='/news').w3-bar-item.w3-button NEWS
+                style.
+                    {width: 25%}
+            a(href='news.html').w3-bar-item.w3-button MY BANDS
+                style.
+                    {width: 25%}
+            a(href='/discover').w3-bar-item.w3-button DISCOVER
+                style.
+                    {width: 25%}
+
+block content
+    style.
+        #main {
+            margin-left: 120px
+        }
+
+        @media only screen and (max-width: 600px) {
+            #main {
+                margin-left: 0
+            }
+        }
+    div#main.w3-padding-large
+        div#home.w3-container.w3-padding-32.w3-center.w3-black
+            h1 #{title}
+            form(method='POST' action='').w3-container.w3-padding-32.w3-center.w3-black
+                div.w3-third
+                    label(for='title') Title:
+                    input#title(type='text', placeholder='Highway To Hell, BYOB etc.' name='title' value=(undefined === song ? '' : song.name))
+                div
+                    label(for='artist') Artist:
+                    select#artist.form-control(type='select' placeholder='Select Artist' name='name' required ='true')
+                        - artist_list.sort(function(a,b){let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+                        for artist in artist_list
+                            if song
+                                option(value = artist._id selected=(song.artist.toString()==artist._id.toString() ? 'selected' : false)) #{artist.name}
+                            else
+                                option(value = book._id) #{artist.name}
+                div.w3-third
+                    label(for='releaseDate') Release Date:
+                    input#releaseDate(type='date' name = 'date_of_release' value=(undefined === song ? '' : song.data_of_release))
+                button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Submit
+
+            if errors
+                ul
+                    for error in errors
+                        li!= error.msg

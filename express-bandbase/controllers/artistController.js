@@ -1,5 +1,5 @@
 var Artist = require('../models/artist');
-var Album = require('../models/artist');
+var Album = require('../models/album');
 var Genre = require('../models/genre');
 var Song = require('../models/song');
 const { body,validationResult } = require('express-validator');
@@ -22,10 +22,11 @@ exports.artist_detail = function(req, res, next) {
     async.parallel({
         artist: function(callback) {
             Artist.findById(req.params.id)
-                .exec(callback);
+                .exec(callback)
         },
-        artist_album: function (callback){
-            Artist.find({ 'artist': req.params.id})
+
+        artists_album: function (callback){
+            Album.find({ 'artist': req.params.id}, 'Testing')
                 .exec(callback);
         },
 
@@ -37,48 +38,65 @@ exports.artist_detail = function(req, res, next) {
             return next(err);
         }
         //Succesful, so render
-        res.render('artist_detail', {title: results.artist.title, artist: results.artist, artist_list: results.artist_album});
+        res.render('artist_detail', {title: 'Artist Detail', artist: results.artist, artist_list: results.artists_album});
     });
 };
 
 // Display Artist create form on GET.
 exports.artist_create_get = function(req, res, next) {
-    res.render('artist_form', {title: 'Create artist'});
+
+    async.parallel({
+        albums: function (callback) {
+            Album.find(callback);
+        },
+    },function(err, results){
+        if(err){return next(err); }
+        res.render('artist_form', {title: 'Create artist', albums: results.albums});
+    })
+    
 };
 
 // Handle Artist create on POST.
 exports.artist_create_post = [
-    
+
     body('name').trim().isLength({min: 1}).escape().withMessage('Band name must be specified'),
-    body('since', 'Invalid date of origin').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('since', 'Invalid date of origin').optional({checkFalsy: true}).isISO8601().toDate(),
     body('stillActive').escape,
-    
-    // Process request after validation and sanitization
+
+        // Process request after validation and sanitization
     (req, res, next) => {
+
         const errors = validationResult(req);
 
-        var artist = new Artist(
-            {   name: req.body.name,
-                since: req.body.since,
-                stillActive: req.body.stillActive
-            }
-        );
-        if (!errors.isEmpty()){
-            res.render('author_form',{title: 'Create Artist', artist: req.body, errors: errors.array()});
+        if (!errors.isEmpty()) {
+            res.render('artist_form', {title: 'Create Artist', artist: req.body, errors: errors.array()});
             return;
-        }
-        else{
-            Artist.findOne({'name':req.body.name})
-                .exec(function (err, found_artist) {
-                    if(err) {return next(err);}
 
-                    if(found_artist){
-                        res.redirect(found_artist.url);
+
+
+        } else {
+
+            var artist = new Artist(
+                {
+                    name: req.body.name,
+                    since: req.body.since,
+                    stillActive: req.body.stillActive
+                }
+            );
+
+            Artist.findOne({'name': req.body.name})
+                .exec(function (err, found_artist) {
+                    if (err) {
+                        return next(err);
                     }
-                    else{
-                        
-                        artist.save(function (err){
-                            if(err) { return next(err);}
+
+                    if (found_artist) {
+                        res.redirect(found_artist.url);
+                    } else {
+                        artist.save(function (err) {
+                            if (err) {
+                                return next(err);
+                            }
                             //Artist saved redirect to genre detail page
                             res.redirect(artist.url);
                         });
@@ -86,8 +104,19 @@ exports.artist_create_post = [
                     }
 
                 });
+            var artist = new Artist(
+                {
+                    name: req.body.name,
+                    since: req.body.since,
+                    stillActive: req.body.stillActive
+                });
+            artist.save(function (err){
+                if (err){return next(err); }
+                res.redirect(author.url);
+
+            });
+            }
         }
-    }
 ];
 
 // Display Artist delete form on GET.

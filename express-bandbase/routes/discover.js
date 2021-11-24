@@ -39,7 +39,7 @@ router.get('/albums', album_controller.album_list);
 /// AUTHOR ROUTES ///
 
 // GET request for creating Artist. NOTE This must come before route for id (i.e. display author).
-router.get('artist', artist_controller.artist_create_get);
+router.get('/artist', artist_controller.artist_create_get);
 
 // POST request for creating Artist.
 router.post('/artist/create', artist_controller.artist_create_post);
@@ -90,7 +90,7 @@ router.get('/genres', genre_controller.genre_list);
 
 /// SONG ROUTES ///
 
-// GET request for creating a Song. NOTE This must come before route that displays BookInstance (uses id).
+// GET request for creating a Song. NOTE This must come before route that displays Song (uses id).
 router.get('/song/create', song_controller.song_create_get);
 
 // POST request for creating Song.
@@ -102,16 +102,16 @@ router.get('/song/:id/delete', song_controller.song_delete_get);
 // POST request to delete Song.
 router.post('/song/:id/delete', song_controller.song_delete_post);
 
-// GET request to update BookInstance.
+// GET request to update Song.
 router.get('/song/:id/update', song_controller.song_update_get);
 
-// POST request to update BookInstance.
+// POST request to update Song.
 router.post('/song/:id/update', song_controller.song_update_post);
 
-// GET request for one BookInstance.
+// GET request for one Song.
 router.get('/song/:id', song_controller.song_detail);
 
-// GET request for list of all BookInstance.
-router.get('/song', song_controller.song_list);
+// GET request for list of all Songs.
+router.get('/songs', song_controller.song_list);
 
 module.exports = router;

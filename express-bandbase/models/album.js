@@ -6,8 +6,8 @@ var Schema = mongoose.Schema;
 
 var AlbumSchema = new Schema({
     title: {type: String, required: true, maxLength: 20},
-    artist: {type: String, required: true, maxLength: 20},
-    genre: {type: String,required: true, maxLength: 20},
+    artist: {type: Schema.Types.ObjectId, ref: 'Artist', required: true},
+    genre: {type: Schema.Types.ObjectId, ref: 'Genre', required: true},
     date_of_release: {type: Date,required: true},
 
 });
