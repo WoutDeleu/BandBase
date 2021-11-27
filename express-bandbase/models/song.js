@@ -8,27 +8,13 @@ var SongSchema = new Schema({
     data_of_release: {type: Date},
     artist: {type: Schema.Types.ObjectId, ref: 'Artist', required: true},
 });
-//Virtual for the album name
-SongSchema
-    .virtual('Song')
-    .get(function () {
-        return this.title;
-    });
 
 //Virtual for the release
 SongSchema
     .virtual('release')
     .get(function () {
-        var releaseDate = '';
-        if (this.date_of_release){
-            releaseDate = DateTime.fromJSDate()(this.date_of_release).toLocaleString(DateTime.DATE_MED);
-        }
-    });
-
-SongSchema
-    .virtual('song')
-    .get(function () {
-        return this.title;
+        releaseDate = DateTime.fromJSDate()(this.date_of_release).toLocaleString(DateTime.DATE_MED);
+        return releaseDate;
     });
 
 // Virtual for author's URL

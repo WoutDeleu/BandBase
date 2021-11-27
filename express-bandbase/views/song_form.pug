@@ -1,4 +1,4 @@
-extends discover
+extends layout
 block nav
     nav.w3-sidebar.w3-bar-block.w3-small.w3-hide-small.w3-center
         a(href='/introscreen')
@@ -13,6 +13,11 @@ block nav
             a(href='/introscreen').w3-bar-item.w3-button HOME
                 style.
                     {width:25%}
+            a(href='/about').w3-bar-item.w3-button ABOUT
+                style.
+                    {
+                        width: 25%
+                    }
             a(href='/news').w3-bar-item.w3-button NEWS
                 style.
                     {width: 25%}
@@ -38,19 +43,20 @@ block content
         div#home.w3-container.w3-padding-32.w3-center.w3-black
             h1 #{title}
             form(method='POST' action='').w3-container.w3-padding-32.w3-center.w3-black
-                div.w3-third
+                div
                     label(for='title') Title:
-                    input#title(type='text', placeholder='Highway To Hell, BYOB etc.' name='title' value=(undefined === song ? '' : song.name))
+                    input#title(type='text', placeholder='Highway To Hell, BYOB etc.' name='title' value=(undefined === song ? '' : song.title))
+
                 div
                     label(for='artist') Artist:
-                    select#artist.form-control(type='select' placeholder='Select Artist' name='name' required ='true')
-                        - artist_list.sort(function(a,b){let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
-                        for artist in artist_list
+                    select#artist(type='select', placeholder='Select an Artist' name= 'artist' required=true)
+                        //- artists.sort(function (a,b){let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+                        for artist in artists
                             if song
-                                option(value = artist._id selected=(song.artist.toString()==artist._id.toString() ? 'selected' : false)) #{artist.name}
+                                option(value=artist._id selected=(artist._id.toString()==song.artist.toString() ? 'selected':false)) #{artist.name}
                             else
-                                option(value = book._id) #{artist.name}
-                div.w3-third
+                                option(value=artist._id) #{artist.name}
+                div
                     label(for='releaseDate') Release Date:
                     input#releaseDate(type='date' name = 'date_of_release' value=(undefined === song ? '' : song.data_of_release))
                 button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Submit

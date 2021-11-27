@@ -6,25 +6,25 @@ const {DateTime} = require("luxon");
 var Schema = mongoose.Schema;
 
 var ArtistSchema = new Schema({
-    name: {type: String, required: true, maxLength: 20},
-    since: {type: Date},
-    stillActive: {type: String, required: true, enum: ['Still Rocking', 'Stopped'], default: 'Still Rocking'},
-});
-//Virtual for the album name
+    name: {type: String, required: true,minlength: 3, maxLength: 30},
+    since: {type: Date, required: true},
+    stillActive: {type: String, required: true, enum: ['StillRocking', 'Stopped'], default: 'Still_Rocking'},
+})
+ArtistSchema
+    .virtual('url')
+    .get(function (){
+        return '/discover/artist/' + this._id;
+    });
 
 ArtistSchema
-    .virtual('Started')
+    .virtual('started')
     .get(function () {
         since_string = DateTime.fromJSDate(this.since).toLocaleString(DateTime.DATE_MED);
         return since_string;
     });
 
 // Virtual for author's URL
-ArtistSchema
-    .virtual('url')
-    .get(function () {
-        return '/discover/artist' + this._id;
-    });
+
 
 //Export model
 module.exports = mongoose.model('Artist', ArtistSchema);

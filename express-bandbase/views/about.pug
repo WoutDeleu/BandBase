@@ -1,31 +1,39 @@
 extends layout
 block nav
     nav.w3-sidebar.w3-bar-block.w3-small.w3-hide-small.w3-center
-        a(href='./introscreen')
-            img(src = './images/LogoResized.png' style='width:100%').
-        a(href='./news').w3-bar-item.w3-button.w3-padding-large.w3-hover-black NEWS
-        a(href='./about').w3-bar-item.w3-button.w3-padding-large.w3-hover-black ABOUT
+        a(href='/introscreen')
+            img(src = '/images/LogoResized.png' style='width:100%').
+        a(href='/news').w3-bar-item.w3-button.w3-padding-large.w3-hover-black NEWS
+        a(href='/about').w3-bar-item.w3-button.w3-padding-large.w3-black ABOUT
         hr
-        a(href='./mybands').w3-bar-item.w3-button.w3-padding-large.w3-hover-black MY BANDS
-        a(href='./discover').w3-bar-item.w3-button.w3-padding-large.w3-hover-black DISCOVER
+        a(href='/mybands').w3-bar-item.w3-button.w3-padding-large.w3-hover-black MY BANDS
+        a(href='/discover').w3-bar-item.w3-button.w3-padding-large.w3-hover-black DISCOVER
     div.w3-top.w3-hide-large.w3-hide-medium#myNavBar
         div.w3-bar.w3-black.w3-opacity.w3-hover-opacity-off.w3-center.w3-small
-            a(href='./introscreen').w3-bar-item.w3-button HOME
+            a(href='/introscreen').w3-bar-item.w3-button HOME
                 style.
                     {width: 25%}
-            a(href='./news').w3-bar-item.w3-button NEWS
+            a(href='/about').w3-bar-item.w3-button ABOUT
+                style.
+                    {
+                        width: 25%
+                    }
+            a(href='/news').w3-bar-item.w3-button NEWS
                 style.
                     {width: 25%}
-            a(href='./myBands').w3-bar-item.w3-button MY BANDS
+            a(href='/myBands').w3-bar-item.w3-button MY BANDS
             style.
                 {width: 25%}
-            a(href='./discover').w3-bar-item.w3-button DISCOVER
+            a(href='/discover').w3-bar-item.w3-button DISCOVER
             style.
                 {width: 25%}
 
 block content
     style.
         #main {margin-left: 120px}
+        #picture1{margin-left: 120px}
+        #picture2{margin-left: 120px}
+
         @media only screen and (max-width: 600px) {#main {margin-left: 0}}
 
     div.w3-padding-small#main
@@ -46,13 +54,9 @@ block content
                 br
                 em Elian & Wout
 
-    style.
-        #pic {margin-left: 300px}
-
-    div.image123#pic
-        .imgContainer
-            img(src='/images/Elian.jpg', height='240', width='241')
-            div.w3-center Elian Vantomme
-        .imgContainer
-            img.right-img(src='/images/Wout.jpg', height='240', width='275')
-            div.w3-center Wout Deleu
+    div.w3-quarter.w3-padding-large#picture1
+        img(src='/images/Elian.jpg', height='240', width='241').w3-center
+        p Elian Vantomme
+    div.w3-quarter#picture2
+        img.right-img(src='/images/Wout.jpg', height='240', width='275').w3-center
+        p Wout Deleu

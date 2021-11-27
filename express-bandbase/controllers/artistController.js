@@ -10,9 +10,9 @@ var async = require('async');
 exports.artist_list = function(req, res, next) {
     Artist.find()
         .sort([['name', 'ascending']])
-        .exec(function(err, list_artists){
+        .exec(function(err, list_artist){
             if(err){return next(err);}
-            res.render('artist_list', {title:'Artist List', artist_list: list_artists});
+            res.render('artist_list', {title:'Artist List', artist_list: list_artist});
     });
 }
 
@@ -20,101 +20,80 @@ exports.artist_list = function(req, res, next) {
 exports.artist_detail = function(req, res, next) {
 
     async.parallel({
-        artist: function(callback) {
+        artist: function (callback) {
             Artist.findById(req.params.id)
-                .exec(callback)
-        },
-
-        artists_album: function (callback){
-            Album.find({ 'artist': req.params.id}, 'Testing')
+                .populate('artist')
                 .exec(callback);
         },
-
+        artist_albums: function (callback) {
+            Album.find({'artist': req.params.id})
+                .exec(callback);
+        },
     }, function (err,results){
-        if (err){return next(err); }
-        if (results.artist==null){
+        if(err){return next(err); }
+        if(results.artist==null){
             var err = new Error('Artist not found');
             err.status = 404;
             return next(err);
         }
-        //Succesful, so render
-        res.render('artist_detail', {title: 'Artist Detail', artist: results.artist, artist_list: results.artists_album});
+        res.render('artist_detail', {title :'Artist Detail', artist: results.artist, artist_albums: results.artist_albums});
     });
-};
+}
 
 // Display Artist create form on GET.
 exports.artist_create_get = function(req, res, next) {
-
-    async.parallel({
-        albums: function (callback) {
-            Album.find(callback);
-        },
-    },function(err, results){
-        if(err){return next(err); }
-        res.render('artist_form', {title: 'Create artist', albums: results.albums});
-    })
-    
+        res.render('artist_form', {title: 'Create artist'});
 };
 
 // Handle Artist create on POST.
 exports.artist_create_post = [
 
-    body('name').trim().isLength({min: 1}).escape().withMessage('Band name must be specified'),
-    body('since', 'Invalid date of origin').optional({checkFalsy: true}).isISO8601().toDate(),
-    body('stillActive').escape,
+        body('name', 'Artist name required').trim().isLength({min: 1}).escape(),
+        body('since').optional({checkFalsy: true}).isISO8601().toDate(),
+        body('stillActive'),
 
         // Process request after validation and sanitization
-    (req, res, next) => {
+        (req, res, next) => {
 
-        const errors = validationResult(req);
-
-        if (!errors.isEmpty()) {
-            res.render('artist_form', {title: 'Create Artist', artist: req.body, errors: errors.array()});
-            return;
-
-
-
-        } else {
+            const errors = validationResult(req);
 
             var artist = new Artist(
                 {
                     name: req.body.name,
                     since: req.body.since,
-                    stillActive: req.body.stillActive
+                    stillActive: req.body.stillActive,
                 }
             );
 
-            Artist.findOne({'name': req.body.name})
-                .exec(function (err, found_artist) {
-                    if (err) {
-                        return next(err);
-                    }
+            if (!errors.isEmpty()) {
+                res.render('artist_form', {title: 'Create Artist', artist: artist, errors: errors.array()});
+                return;
 
-                    if (found_artist) {
-                        res.redirect(found_artist.url);
-                    } else {
-                        artist.save(function (err) {
-                            if (err) {
-                                return next(err);
-                            }
-                            //Artist saved redirect to genre detail page
-                            res.redirect(artist.url);
-                        });
+            }
+            else {
+                // Data from form is valid.
+                // Check if Artist with same name already exists.
+                Artist.findOne({ 'name': req.body.name })
+                    .exec( function(err, found_artist) {
+                        if (err) { return next(err); }
 
-                    }
+                        if (found_artist) {
+                            // Genre exists, redirect to its detail page.
+                            res.redirect(found_artist.url);
+                        }
+                        else {
 
-                });
-            var artist = new Artist(
-                {
-                    name: req.body.name,
-                    since: req.body.since,
-                    stillActive: req.body.stillActive
-                });
-            artist.save(function (err){
-                if (err){return next(err); }
-                res.redirect(author.url);
+                            artist.save(function (err) {
+                                if (err) { return next(err); }
+                                // Artist saved. Redirect to artist detail page.
+                                res.redirect(artist.url);
+                            });
 
-            });
+                        }
+
+                    });
+
+
             }
         }
 ];

@@ -50,14 +50,52 @@ exports.album_create_get = function(req, res, next) {
         },
     },function(err, results){
         if(err){return next(err); }
-        res.render('album_form', {title: 'Create Album', albums: results.artists});
+        res.render('album1_form', {title: 'Create Album', albums: results.artists});
     })
 };
 
 // Handle Album create on POST.
-exports.album_create_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Album create POST');
-};
+exports.album_create_post = [
+    body('title', 'Album name required').trim().isLength({min: 1}).escape(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+
+        var album = new Album(
+            {title: req.body.title,
+            artist: req.body.artist,
+            genre: req.body.genre,
+            date_of_release:  req.body.date_of_release
+            }
+        );
+        if (!errors.isEmpty()){
+            res.render('album1_form', {title: 'Create Album', album: album, errors: errors.array()});
+            return;
+        }
+        else {
+            Album.findOne({'title': req.body.title})
+                .exec(function (err, found_album) {
+                    if (err) {
+                        return next(err);
+                    }
+
+                    if (found_album) {
+                        res.redirect(found_album.url);
+                    } else {
+                        album.save(function (err) {
+                            if (err) {
+                                return next(err);
+                            }
+                            res.redirect(album.url);
+                        })
+                    }
+                })
+        }
+    }
+];
 
 // Display Album delete form on GET.
 exports.album_delete_get = function(req, res, next) {

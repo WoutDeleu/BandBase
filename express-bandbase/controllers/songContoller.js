@@ -12,7 +12,7 @@ exports.song_list = function(req, res, next) {
         .sort([['title','ascending']])
         .exec(function (err, list_song){
             if(err){return next(err); }
-            res.render('song_list', {title: 'Song List', genre_list: list_song})
+            res.render('song_list', {title: 'Song List', song_list: list_song})
         });
 };
 
@@ -30,44 +30,42 @@ exports.song_detail = function(req, res, next) {
 
 // Display Artist create form on GET.
 exports.song_create_get = function(req, res, next) {
-    res.render('song_form', {title: 'Create Song '});
+    Artist.find({},'title')
+        .exec(function (err, artists) {
+            if (err) { return next(err); }
+            // Successful, so render.
+            res.render('song_form', {title: 'Create Song ', artists: artists});
+        });
+    
 };
 
 // Handle Song create on POST.
-exports.song_create_post = function(req, res, next) {
-    body('title', 'Song Title is required').trim().isLength({min: 1}).escape(), 
-    body('data_of_release', 'Invalid date of release').optional({ checkFalsy: true }).isISO8601().toDate(),
+exports.song_create_post = [
+
+        body('title', 'Song Title is required').trim().isLength({min: 1}).escape(),
+        body('data_of_release', 'Invalid date of release').optional({ checkFalsy: true }).isISO8601().toDate(),
+        body('artist.*').escape(),
 
         (req,res,next) => {
             const errors = validationResult(req);
-            
+
             var song = new Song({
                 title: req.body.title,
-                data_of_release: req.body.date_of_release,
+                data_of_release: req.body.data_of_release,
+                artist: req.body.artist
             });
             if (!errors.isEmpty()){
-                res.render('song_form',{title: 'Create Song', song: req.body, errors: errors.array()});
+                res.render('song_form', {title: 'Create Song', song: song, artists:results.artists,errors: errors.array()});
                 return;
             }
             else{
-                Song.findOne({'title':req.body.title})
-                    .exec(function (err, found_artist){
-                        if(err) {return next(err);}
-
-                        if(found_song){
-                            res.redirect(found_song.url);
-                        }
-                        else{
-                            song.save(function (err){
-                                if(err){return next(err);}
-                                res.redirect(song.url)
-                            })
-                        }
-                    })
+                song.save(function (err){
+                    if(err){return next(err);}
+                    res.redirect(song.url);
+                });
             }
-            
-        };    
-}
+        }
+];
 
 // Display Artist delete form on GET.
 exports.song_delete_get = function(req, res, next) {

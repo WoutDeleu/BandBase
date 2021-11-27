@@ -1,7 +1,28 @@
-extends layout
-block nav
+doctype html
+html
+    head
+        title Band Base
+        title=BandBase
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        link(rel='icon' href='/images/LogoResized.ico')
+        style.
+            body h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+            .w3-row-padding img {margin-bottom: 12px}
+            .w3-sidebar {width: 120px;background: #222;}
+            #main {margin-left: 120px}
+            @media only screen and (max-width: 600px){#main{margin-left:0}}
 
-block content
+
+    body.w3-black
+    style.
+        body{background-image: url(/images/indexBackground.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     div.w3-padding-large#main
-        a(href='./introscreen')
-            img.w3-center(src='./images/logoBandbase_500x500-removebg-preview.png' alt='Picture of the Band Base log')
+        a(href='/introscreen')
+            img.w3-center(src='/images/logoBandbase_500x500-removebg-preview.png' alt='Picture of the Band Base log')
