@@ -22,7 +22,6 @@ exports.artist_detail = function(req, res, next) {
     async.parallel({
         artist: function (callback) {
             Artist.findById(req.params.id)
-                .populate('artist')
                 .exec(callback);
         },
         artist_albums: function (callback) {
