@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 const {DateTime} = require("luxon");
+const url = require("url");
 
 var Schema = mongoose.Schema;
 
 var SongSchema = new Schema({
     title: {type: String, required: true, maxLength: 20},
+    URL_videoclip: {type: String},
     data_of_release: {type: Date},
     artist: {type: Schema.Types.ObjectId, ref: 'Artist', required: true},
 });
@@ -21,8 +23,9 @@ SongSchema
 SongSchema
     .virtual('url')
     .get(function () {
-        return '/discover/song' + this._id;
+        return '/discover/song/' + this._id;
     });
+
 
 
 //Export model

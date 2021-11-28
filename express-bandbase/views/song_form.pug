@@ -30,6 +30,12 @@ block nav
 
 block content
     style.
+        body {
+            background-image: url(/images/introBackground.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
         #main {
             margin-left: 120px
         }
@@ -46,6 +52,10 @@ block content
                 div
                     label(for='title') Title:
                     input#title(type='text', placeholder='Highway To Hell, BYOB etc.' name='title' value=(undefined === song ? '' : song.title))
+
+                div
+                    label(for='URL_Videoclip') URL_Videoclip:
+                    input#URL_Videoclip(type='text', name='url' value=(undefined === song ? '' : song.URL_videoclip))
 
                 div
                     label(for='artist') Artist:

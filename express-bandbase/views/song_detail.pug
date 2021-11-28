@@ -39,7 +39,36 @@ block content
                 margin-left: 0
             }
         }
+    div#media
+        script.
+            //bron : https://developers.google.com/youtube/iframe_api_reference?hl=nl
+              var tag = document.createElement('script');
+              tag.src = "https://www.youtube.com/iframe_api";
+              var firstScriptTag = document.getElementsByTagName('script')[0];
+              firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+              var player;
+              function onYouTubeIframeAPIReady() {
+              player = new YT.Player('player', {
+                  height: '390',
+                  width: '640',
+                  videoId: 'M7lc1UVf-VE',
+                  playerVars: {
+                  'playsinline': 1
+              },
+              events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+              }
+              });
+              }
+              function onPlayerReady(event) {
+              event.target.playVideo();
+              }
+
     div#main.w3-padding-large
         div#home.w3-container.w3-padding-32.w3-center.w3-black
 
             h1 Song: #{song.name}
+
+
