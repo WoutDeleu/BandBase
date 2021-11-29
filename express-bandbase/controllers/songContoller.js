@@ -4,6 +4,7 @@ var Album = require('../models/album');
 const { body,validationResult } = require('express-validator');
 
 var async = require('async');
+var luxon = require('luxon');
 
 
 // Display list of all Artists.
@@ -24,8 +25,15 @@ exports.song_detail = function(req, res, next) {
                 .exec(callback);
         },
     },function (err, results){
-        
-    })
+        if (err) { return next(err); }
+        if (results.song==null) { // No results.
+            var err = new Error('Song not found');
+            err.status = 404;
+            return next(err);
+        }
+        // Successful, so render
+        res.render('song_detail', { title: 'Song Detail', song: results.song } );
+    });
 };
 
 // Display Artist create form on GET.
