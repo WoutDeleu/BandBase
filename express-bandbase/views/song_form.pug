@@ -48,15 +48,10 @@ block content
     div#main.w3-padding-large
         div#home.w3-container.w3-padding-32.w3-center.w3-black
             h1 #{title}
-            form(method='POST' action='').w3-container.w3-padding-32.w3-center.w3-black
+            form(method='POST' action='').w3-container.w3-padding-32.w3-center.w3-transparant
                 div
                     label(for='title') Title:
                     input#title(type='text', placeholder='Highway To Hell, BYOB etc.' name='title' value=(undefined === song ? '' : song.title))
-
-                div
-                    label(for='URL_Videoclip') URL_Videoclip:
-                    input#URL_Videoclip(type='text', name='url' value=(undefined === song ? '' : song.URL_videoclip))
-
                 div
                     label(for='artist') Artist:
                     select#artist(type='select', placeholder='Select an Artist' name= 'artist' required=true)
@@ -70,6 +65,10 @@ block content
                     label(for='releaseDate') Release Date:
                     input#releaseDate(type='date' name = 'date_of_release' value=(undefined === song ? '' : song.data_of_release))
                 button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Submit
+                div
+                    label(for='URL_Videoclip') URL_Videoclip:
+                    input#URL_Videoclip(type='text', name='url' value=(undefined === song ? '' : song.URL_videoclip))
+
 
             if errors
                 ul

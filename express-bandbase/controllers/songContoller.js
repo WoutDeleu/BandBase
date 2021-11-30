@@ -62,7 +62,7 @@ exports.song_create_post = [
                 data_of_release: req.body.data_of_release,
                 artist: req.body.artist
             });
-            if (!errors.isEmpty()){
+            if (!errors.isEmpty()) {
                 res.render('song_form', {title: 'Create Song', song: song, artists:results.artists,errors: errors.array()});
                 return;
             }

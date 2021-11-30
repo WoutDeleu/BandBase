@@ -22,7 +22,7 @@ AlbumSchema
 AlbumSchema.virtual('release').get(function () {
         var releaseDate = '';
         if (this.date_of_release){
-            releaseDate = DateTime.fromJSDate()(this.date_of_release).toLocaleString(DateTime.DATE_MED);
+            releaseDate = DateTime.fromJSDate(this.date_of_release).toLocaleString(DateTime.DATE_MED);
         }
         return releaseDate;
     });
