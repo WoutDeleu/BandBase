@@ -108,10 +108,38 @@ exports.genre_delete_post = function(req, res, next) {
 
 // Display Artist update form on GET.
 exports.genre_update_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Genre update GET');
+    res.render('genre_form', { title: 'Update Genre ' });
 };
 
 // Handle Artist update on POST.
 exports.genre_update_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Genre update POST');
+    // Validate and santize the name field.
+    body('name', 'Genre name required').trim().isLength({ min: 1 }).escape(),
+
+        // Process request after validation and sanitization.
+        (req, res, next) => {
+
+            // Extract the validation errors from a request.
+            const errors = validationResult(req);
+
+            // Create a genre object with escaped and trimmed data.
+            var genre = new Genre(
+                {name: req.body.name,
+                _id: req.body.id,
+                }
+            );
+
+            if (!errors.isEmpty()) {
+
+                // There are errors. Render the form again with sanitized values/error messages.
+                res.render('genre_form', {title: 'Update Genre', genre: genre, errors: errors.array()});
+                return;
+            }
+            else{
+                Genre.findByIdAndUpdate(req.params.id,genre,{}, function (err,thegenre){
+                    if(err){return next(err);}
+                    res.redirect(thegenre.url);
+                })
+            }
+        }
 };

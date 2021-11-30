@@ -47,7 +47,6 @@ exports.song_create_get = function(req, res, next) {
             // Successful, so render.
             res.render('song_form', {title: 'Create Song ', artists: artists});
         });
-    
 };
 
 // Handle Song create on POST.
@@ -63,7 +62,8 @@ exports.song_create_post = [
             var song = new Song({
                 title: req.body.title,
                 data_of_release: req.body.data_of_release,
-                artist: req.body.artist
+                artist: req.body.artist,
+                URL_videoclip: req.body.URL_videoclip
             });
             if (!errors.isEmpty()) {
                 res.render('song_form', {title: 'Create Song', song: song, artists:results.artists,errors: errors.array()});

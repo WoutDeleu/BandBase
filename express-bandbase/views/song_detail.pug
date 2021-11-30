@@ -56,33 +56,7 @@ block content
             h3 Album: #{song.album}
             h3 Release Date: #{song.releaseDate}
 
-        div#player.w3-container.w3-padding-32.w3-center
-            script.
-                //bron : https://developers.google.com/youtube/iframe_api_reference?hl=nl
-                var tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
-                var firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            iframe(id = videoPlayer, type='video', width='640', height='390',
+                src=song.URL_videoclip,autoplay
+                frameborder='0',)
 
-                var player;
-                function onYouTubeIframeAPIReady() {
-                    player = new YT.Player('player', {
-                        height: '190',
-                        width: '320',
-                        videoId: 'M7lc1UVf-VE',
-                        playerVars: {
-                            'playsinline': 1
-                        },
-                        events: {
-                            'onReady': onPlayerReady,
-                            'onStateChange': onPlayerStateChange
-                        }
-                    });
-                }
-                function onPlayerReady(event) {
-                    event.target.playVideo();
-                }
-                function stopVideo() {
-                    player.stopVideo();
-                }
-            iframe#player1(type='text/html', width='320', height='190', src=song.URL_videoclip, frameborder='0', autoplay)

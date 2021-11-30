@@ -16,7 +16,7 @@ var SongSchema = new Schema({
 SongSchema
     .virtual('releaseDate')
     .get(function () {
-        releaseDate = DateTime.fromJSDate(this.date_of_release).toLocaleString(DateTime.DATE_MED);
+        releaseDate = DateTime.fromJSDate(this.data_of_release).toLocaleString(DateTime.DATE_MED);
         return releaseDate;
     });
 
@@ -26,6 +26,17 @@ SongSchema
     .get(function () {
         return '/discover/song/' + this._id;
     });
+
+SongSchema
+    .virtual('videoURL')
+    .get(function (){
+        var url = song.URL_videoclip
+        var urlSplit = url.split("/");
+        var sauce = urlSplit[urlSplit.length - 1].split("=")[1]
+        var defUrl = "http://www.youtube.com/embed/" + sauce
+
+    })
+
 /*
 
 var Artists = mongoose.model()
