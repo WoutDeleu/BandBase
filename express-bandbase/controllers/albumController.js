@@ -29,7 +29,7 @@ exports.index = function(req, res) {
 
 // Display list of all Artists.
 exports.album_list = function(req, res, next) {
-    Artist.find()
+    Album.find()
         .sort([['title', 'ascending']])
         .exec(function(err, list_albums){
             if(err){return next(err);}
@@ -39,24 +39,67 @@ exports.album_list = function(req, res, next) {
 
 // Display detail page for a specific Album.
 exports.album_detail = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Album detail');
+    async.parallel({
+        album: function (callback) {
+            Album.findById(req.params.id)
+                .populate('artist')
+                .populate('song')
+                .populate('genre')
+                .exec(callback);
+        },
+        album_songs:function(callback){
+            Song.find({'album': req.params.id})
+                .exec(callback);
+        },
+    },function (err, results){
+        if (err) { return next(err); }
+        if (results.album==null) { // No results.
+            var err = new Error('Album not found');
+            err.status = 404;
+            return next(err);
+        }
+        // Successful, so render
+        res.render('album_detail', { title: 'Album Detail', album: results.album, album_songs: results.album_songs} );
+    });
 };
 
 // Display Album create form on GET.
 exports.album_create_get = function(req, res, next) {
+
     async.parallel({
-        artists: function (callback) {
+        artists:function (callback){
             Artist.find(callback);
         },
-    },function(err, results){
-        if(err){return next(err); }
-        res.render('album1_form', {title: 'Create Album', albums: results.artists});
-    })
-};
+        genres:function(callback){
+            Genre.find(callback);
+        },
+        songs:function (callback){
+            Song.find(callback)
+        },
+    },function (err,results){
+        if(err){return next(err);}
+        res.render('album1_form',{title:'Create Album', artists: results.artists, genres: results.genres, songs:results.songs});
+    });
+}
 
 // Handle Album create on POST.
 exports.album_create_post = [
+
+    (req, res, next) => {
+        if(!(req.body.song instanceof Array)){
+            if(typeof req.body.song ==='undefined')
+                req.body.song = [];
+            else
+                req.body.song = new Array(req.body.song);
+        }
+        next();
+    },
+
     body('title', 'Album name required').trim().isLength({min: 1}).escape(),
+    body('data_of_release').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('artist.*').escape(),
+    body('genre.*').escape(),
+    body('song.*').escape(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -68,11 +111,31 @@ exports.album_create_post = [
             {title: req.body.title,
             artist: req.body.artist,
             genre: req.body.genre,
-            date_of_release:  req.body.date_of_release
+            date_of_release: req.body.date_of_release,
+            song: req.body.song
             }
         );
         if (!errors.isEmpty()){
-            res.render('album1_form', {title: 'Create Album', album: album, errors: errors.array()});
+            async.parallel({
+                artists: function (callback){
+                    Artist.find(callback);
+                },
+                genres: function (callback){
+                    Genre.find(callback);
+                },
+                songs: function (callback){
+                    Song.find(callback);
+                }
+            }, function (err,results){
+                if(err){return next(err);}
+
+                for (let i = 0; i < results.songs.length; i++) {
+                    if (album.song.indexOf(results.songs[i]._id) > -1) {
+                        results.songs[i].checked='true';
+                    }
+                }
+                res.render('album1_form', {title: 'Create Album', album: album,artists: results.artists,genres: results.genres, errors: errors.array()});
+            });
             return;
         }
         else {

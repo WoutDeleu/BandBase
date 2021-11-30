@@ -51,23 +51,24 @@ block content
             form(method='POST' action='').w3-container.w3-padding-32.w3-center.w3-transparant
                 div
                     label(for='title') Title:
-                    input#title(type='text', placeholder='Highway To Hell, BYOB etc.' name='title' value=(undefined === song ? '' : song.title))
+                    input#title(type='text', placeholder='Highway To Hell, BYOB etc.' name='title' required=true value=(undefined === song ? '' : song.title))
                 div
                     label(for='artist') Artist:
-                    select#artist(type='select', placeholder='Select an Artist' name= 'artist' required=true)
-                        //- artists.sort(function (a,b){let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+                    select#artist(type='select', placeholder='Select an Artist' name= 'artist' required='true')
+                        - artists.sort(function (a,b){let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
                         for artist in artists
                             if song
-                                option(value=artist._id selected=(artist._id.toString()==song.artist.toString() ? 'selected':false)) #{artist.name}
+                                option(value=artist._id selected=(artist._id.toString()===song.artist._id.toString() ? 'selected' : false)) #{artist.name}
                             else
                                 option(value=artist._id) #{artist.name}
                 div
-                    label(for='releaseDate') Release Date:
-                    input#releaseDate(type='date' name = 'date_of_release' value=(undefined === song ? '' : song.data_of_release))
-                button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Submit
+                    label(for='date_of_release') Release Date:
+                    input#date_of_release(type='date' name = 'data_of_release' value=(undefined === song ? '' : song.data_of_release))
                 div
                     label(for='URL_Videoclip') URL_Videoclip:
                     input#URL_Videoclip(type='text', name='url' value=(undefined === song ? '' : song.URL_videoclip))
+                button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Submit
+
 
 
             if errors

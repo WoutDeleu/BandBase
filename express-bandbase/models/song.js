@@ -9,11 +9,12 @@ var SongSchema = new Schema({
     URL_videoclip: {type: String, required: false,},
     data_of_release: {type: Date},
     artist: {type: Schema.Types.ObjectId, ref: 'Artist', required: true},
+    album: {type: Schema.Types.ObjectID, ref: 'Album'}
 });
 
 //Virtual for the release
 SongSchema
-    .virtual('release')
+    .virtual('releaseDate')
     .get(function () {
         releaseDate = DateTime.fromJSDate(this.date_of_release).toLocaleString(DateTime.DATE_MED);
         return releaseDate;

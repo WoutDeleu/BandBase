@@ -47,7 +47,7 @@ exports.artist_create_get = function(req, res, next) {
 // Handle Artist create on POST.
 exports.artist_create_post = [
 
-        body('name', 'Artist name required').trim().isLength({min: 1}).escape(),
+        body('name').trim().isLength({min: 1}).escape(),
         body('since').optional({checkFalsy: true}).isISO8601().toDate(),
         body('stillActive'),
 

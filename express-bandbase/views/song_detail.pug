@@ -50,11 +50,11 @@ block content
         div#home.w3-container.w3-padding-32.w3-center.w3-transparant
             h1 Song: #{song.title}
             //Artist Query
-            script.
 
-            h3 Artist
-            h3 Album:
-            h3 Release Date: #{song.release}
+            h3 Artist:
+                a(href=song.artist.url) #{song.artist.name}
+            h3 Album: #{song.album}
+            h3 Release Date: #{song.releaseDate}
 
         div#player.w3-container.w3-padding-32.w3-center
             script.

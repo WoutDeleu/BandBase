@@ -22,6 +22,8 @@ exports.song_detail = function(req, res, next) {
     async.parallel({
         song: function (callback) {
             Song.findById(req.params.id)
+                .populate('artist')
+                .populate('album')
                 .exec(callback);
         },
     },function (err, results){
@@ -36,9 +38,10 @@ exports.song_detail = function(req, res, next) {
     });
 };
 
-// Display Artist create form on GET.
+// Display Song create form on GET.
 exports.song_create_get = function(req, res, next) {
-    Artist.find({},'title')
+
+    Artist.find({},'name')
         .exec(function (err, artists) {
             if (err) { return next(err); }
             // Successful, so render.
@@ -51,7 +54,7 @@ exports.song_create_get = function(req, res, next) {
 exports.song_create_post = [
 
         body('title', 'Song Title is required').trim().isLength({min: 1}).escape(),
-        body('data_of_release', 'Invalid date of release').optional({ checkFalsy: true }).isISO8601().toDate(),
+        body('data_of_release').optional({ checkFalsy: true }).isISO8601().toDate(),
         body('artist.*').escape(),
 
         (req,res,next) => {

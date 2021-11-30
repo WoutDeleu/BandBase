@@ -9,17 +9,12 @@ var AlbumSchema = new Schema({
     artist: {type: Schema.Types.ObjectId, ref: 'Artist', required: true},
     genre: {type: Schema.Types.ObjectId, ref: 'Genre', required: true},
     date_of_release: {type: Date,required: true},
+    song: [{type: Schema.Types.ObjectId, ref: 'Song'}]
 
 });
-//Virtual for the album name
-AlbumSchema
-    .virtual('album')
-    .get(function () {
-        return this.title;
-    });
 
 //Virtual for the release
-AlbumSchema.virtual('release').get(function () {
+AlbumSchema.virtual('releaseDate').get(function () {
         var releaseDate = '';
         if (this.date_of_release){
             releaseDate = DateTime.fromJSDate(this.date_of_release).toLocaleString(DateTime.DATE_MED);
@@ -37,7 +32,7 @@ AlbumSchema
 AlbumSchema
     .virtual('url')
     .get(function () {
-        return '/discover/album'+this._id;
+        return '/discover/album/'+this._id;
     });
 
 
