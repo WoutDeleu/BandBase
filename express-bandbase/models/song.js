@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 var SongSchema = new Schema({
     title: {type: String, required: true, maxLength: 20},
-    URL_videoclip: {type: String},
+    URL_videoclip: {type: String, required: false,},
     data_of_release: {type: Date},
     artist: {type: Schema.Types.ObjectId, ref: 'Artist', required: true},
 });
@@ -26,6 +26,7 @@ SongSchema
         return '/discover/song/' + this._id;
     });
 /*
+
 var Artists = mongoose.model()
 //Virtural for artist
 SongSchema
