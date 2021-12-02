@@ -162,12 +162,44 @@ exports.album_create_post = [
 
 // Display Album delete form on GET.
 exports.album_delete_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Album delete GET');
+    async.parallel({
+        album: function (callback) {
+            Album.findById(req.params.id).exec(callback);
+        },
+        album_songs: function(callback) {
+            Song.find({ 'album': req.params.id })
+                .exec(callback);
+        },
+    },function (err, results){
+        if(err){return next(err);}
+        res.render('album_delete',{title: 'Delete Song', album: results.album, album_songs: results.album_songs})
+    });
 };
 
-// Handle Artist delete on POST.
+// Handle Album delete on POST.
 exports.album_delete_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Album delete POST');
+    async.parallel({
+        album: function (callback) {
+            Album.findById(req.params.albumid).exec(callback);
+        },
+        album_songs: function(callback) {
+            Song.find({ 'album': req.params.id })
+                .exec(callback);
+        },
+    },function (err, results){
+        if(err){return next(err);}
+        if (results.album_songs.length > 0) {
+            // Author has books. Render in same way as for GET route.
+            res.render('album_delete', { title: 'Delete Album', album: results.album, album_songs: results.album_songs} );
+            return;
+        }
+        else{
+            Album.findByIdAndRemove(req.body.albumid, function deleteAlbum(err){
+                if(err){return next(err);}
+                res.redirect('/discover/albums')
+            });
+        }
+    });
 };
 
 // Display Artist update form on GET.
@@ -203,7 +235,7 @@ exports.album_update_get = function(req, res, next) {
     });
 };
 
-// Handle Artist update on POST.
+// Handle Album update on POST.
 exports.album_update_post = [
     (req, res, next) => {
         if(!(req.body.song instanceof Array)){

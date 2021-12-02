@@ -1,7 +1,7 @@
-Release date bij songs kan niet worden aangepast
-Bij toevoegen song: artiesten kunnen selecteren
+
+
 kan niet connecteren tot yt : "www.youtube.com refused to connect"
-Bij bv War-Brutus: invalid DATETIME fixen
+Wanneer een liedje wordt gekoppeld aan een album wordt deze niet getoond in de album_detail.
 
 
 https://newsdata.io/api/1/news?apikey=YOUR_API_KEY&q=music

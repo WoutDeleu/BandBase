@@ -10,6 +10,7 @@ var introRouter = require('./routes/introScreen');
 var newsRouter = require('./routes/news');
 var discoverRouter = require('./routes/discover');
 var aboutRouter = require('./routes/about');
+var myBandsRouter = require('./routes/myBands');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use('/introScreen', introRouter);
 app.use('/news', newsRouter);
 app.use('/discover', discoverRouter);
 app.use('/about', aboutRouter);
+app.use('/mybands',myBandsRouter);
 
 
 // catch 404 and forward to error handler

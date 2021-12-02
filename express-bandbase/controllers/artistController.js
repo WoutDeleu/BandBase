@@ -77,11 +77,9 @@ exports.artist_create_post = [
                         if (err) { return next(err); }
 
                         if (found_artist) {
-                            // Genre exists, redirect to its detail page.
+                            // Artist exists, redirect to its detail page.
                             res.redirect(found_artist.url);
-                        }
-                        else {
-
+                        }else {
                             artist.save(function (err) {
                                 if (err) { return next(err); }
                                 // Artist saved. Redirect to artist detail page.
@@ -91,28 +89,100 @@ exports.artist_create_post = [
                         }
 
                     });
-
-
             }
         }
 ];
 
 // Display Artist delete form on GET.
 exports.artist_delete_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist delete GET');
+    async.parallel({
+        artist: function (callback) {
+            Artist.findById(req.params.id).exec(callback);
+        },
+        artist_albums: function(callback) {
+            Album.find({ 'artist': req.params.id })
+                .exec(callback);
+        },
+    },function (err, results){
+        if(err){return next(err);}
+        res.render('artist_delete',{title: 'Delete Album', artist: results.artist, artist_albums: results.artist_albums})
+    });
 };
 
 // Handle Artist delete on POST.
 exports.artist_delete_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist delete POST');
+    async.parallel({
+        artist: function (callback) {
+            Artist.findById(req.params.id).exec(callback);
+        },
+        artist_albums: function(callback) {
+            Album.find({ 'artist': req.params.id })
+                .exec(callback);
+        },
+    },function (err, results){
+        if(err){return next(err);}
+        if (results.artist_albums.length > 0) {
+            // Author has books. Render in same way as for GET route.
+            res.render('artist_delete', { title: 'Delete Artist', artist: results.artist,artist_albums: results.artist_albums} );
+            return;
+        }
+        else{
+            Artist.findByIdAndRemove(req.body.artistid, function deleteArtist(err){
+                if(err){return next(err);}
+                res.redirect('/discover/artists')
+            });
+        }
+    });
 };
 
 // Display Artist update form on GET.
 exports.artist_update_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist update GET');
+    async.parallel({
+        artist: function (callback) {
+            Artist.findById(req.params.id).exec(callback);
+        },
+    },function (err,results){
+        if(err){return next(err);}
+        if(results.artist == null){
+            var err = new Error('Artist not found');
+            err.status = 404;
+            return next(err);
+        }
+        res.render('artist_form', { title: 'Update Artist ', artist: results.artist });
+    })
 };
 
 // Handle Artist update on POST.
-exports.artist_update_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Artist update POST');
-};
+exports.artist_update_post = [
+    body('name').trim().isLength({min: 1}).escape(),
+    body('since').optional({checkFalsy: true}).isISO8601().toDate(),
+    body('stillActive'),
+
+    // Process request after validation and sanitization
+    (req, res, next) => {
+
+        const errors = validationResult(req);
+
+        var artist = new Artist(
+            {
+                name: req.body.name,
+                since: req.body.since,
+                stillActive: req.body.stillActive,
+                _id: req.params.id,
+            }
+        );
+
+        if (!errors.isEmpty()) {
+            res.render('artist_form', {title: 'Update Artist', artist: artist, errors: errors.array()});
+            return;
+
+        } else {
+            Artist.findByIdAndUpdate(req.params.id, artist, {}, function (err, theartist) {
+                if (err) {
+                    return next(err);
+                }
+                res.redirect(theartist.url);
+            })
+        }
+    }
+];

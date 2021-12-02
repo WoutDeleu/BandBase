@@ -50,14 +50,16 @@ block content
 
                 dl
                     each song in album.song
-                        a(href=song.url) #{song.title}
+                        ul
+                            li
+                                a(href=song.url) #{song.title}
 
                     else
                         p This album has no songs
 
-            div.w3-bottombar
-                hr
-                p
-                    a(href=album.url + '/update') UPDATE ALBUM
-                p
-                    a(href=album.url + '/delete') DELETE ALBUM
+
+            hr
+            p
+                a(href=album.url + '/update') UPDATE ALBUM
+            p
+                a(href=album.url + '/delete') DELETE ALBUM

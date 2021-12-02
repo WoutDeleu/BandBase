@@ -95,7 +95,7 @@ exports.genre_create_post =  [
     }
 ];
 
-// Handle Artist delete on GET.
+// Handle Genre delete on GET.
 exports.genre_delete_get = function(req, res, next) {
     async.parallel({
         genre: function (callback) {
@@ -112,7 +112,7 @@ exports.genre_delete_get = function(req, res, next) {
 };
 
 
-// Handle Artist delete on POST.
+// Handle Genre delete on POST.
 exports.genre_delete_post = function(req, res, next) {
     async.parallel({
         genre: function (callback) {
@@ -132,14 +132,13 @@ exports.genre_delete_post = function(req, res, next) {
         else{
             Genre.findByIdAndRemove(req.body.genreid, function deleteGenre(err){
                 if(err){return next(err);}
-
                 res.redirect('/discover/genres')
             });
         }
     });
 };
 
-// Display Artist update form on GET.
+// Display Genre update form on GET.
 exports.genre_update_get = function(req, res, next) {
     async.parallel({
         genre: function (callback) {
@@ -157,7 +156,7 @@ exports.genre_update_get = function(req, res, next) {
 
 };
 
-// Handle Artist update on POST.
+// Handle Genre update on POST.
 exports.genre_update_post = [
     // Validate and santize the name field.
     body('name', 'Genre name required').trim().isLength({ min: 1 }).escape(),
