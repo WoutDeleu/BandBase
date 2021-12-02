@@ -14,7 +14,8 @@ html
       .w3-row-padding img {margin-bottom: 12px}
       .w3-sidebar {width: 120px;background: #222;}
       #main {margin-left: 120px}
-      @media only screen and (max-width: 600px){#main{margin-left:0}}
+      #cookie{margin-left: 120px}
+      @media only screen and (max-width: 600px){#main{margin-left:0} #cookie{margin-left:0}}
 
 
   body.w3-black
@@ -23,9 +24,13 @@ html
 
     block content
 
+    div#cookie.cookie-container.w3-round-large.w3-padding-medium.w3-display-topmiddle.w3-center
+      p.
+        We use cookies in this website to give you the best experience on our
+        website. To find out more, read our privacy policy and cookie policy.
 
-
-
+      button.cookie-Button.w3-btn.w3-black.w3-hover-white.w3-round-large OKAY
+      script(src='javascripts/cookie.js')
 
 
 
