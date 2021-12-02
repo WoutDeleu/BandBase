@@ -172,10 +172,98 @@ exports.album_delete_post = function(req, res, next) {
 
 // Display Artist update form on GET.
 exports.album_update_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Album update GET');
+    async.parallel({
+        album: function (callback){
+            Album.findById(req.params.id).populate('artist').populate('genre').populate('song').exec(callback);
+        },
+        artists:function (callback){
+            Artist.find(callback);
+        },
+        genres:function(callback){
+            Genre.find(callback);
+        },
+        songs:function (callback){
+            Song.find(callback)
+        },
+    },function (err,results){
+        if(err){return next(err);}
+        if (results.album==null) { // No results.
+            var err = new Error('Album not found!');
+            err.status = 404;
+            return next(err);
+        }
+        for (var all_g_iter = 0; all_g_iter < results.songs.length; all_g_iter++) {
+            for (var album_s_iter = 0; album_s_iter < results.album.song.length; album_s_iter++) {
+                if (results.songs[all_g_iter]._id.toString()===results.album.song[album_s_iter]._id.toString()) {
+                    results.songs[all_g_iter].checked='true';
+                }
+            }
+        }
+        res.render('album1_form',{title:'Create Album', artists: results.artists, genres: results.genres, songs:results.songs, album: results.album});
+    });
 };
 
 // Handle Artist update on POST.
-exports.album_update_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Album update POST');
-};
+exports.album_update_post = [
+    (req, res, next) => {
+        if(!(req.body.song instanceof Array)){
+            if(typeof req.body.song ==='undefined')
+                req.body.song = [];
+            else
+                req.body.song = new Array(req.body.song);
+        }
+        next();
+    },
+
+    body('title', 'Album name required').trim().isLength({min: 1}).escape(),
+    body('data_of_release').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('artist.*').escape(),
+    body('genre.*').escape(),
+    body('song.*').escape(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+
+        var album = new Album(
+            {title: req.body.title,
+                artist: req.body.artist,
+                genre: req.body.genre,
+                date_of_release: req.body.date_of_release,
+                song: req.body.song,
+                _id: req.params.id
+            });
+        if (!errors.isEmpty()){
+            async.parallel({
+                artists: function (callback){
+                    Artist.find(callback);
+                },
+                genres: function (callback){
+                    Genre.find(callback);
+                },
+                songs: function (callback){
+                    Song.find(callback);
+                }
+            }, function (err,results){
+                if(err){return next(err);}
+
+                for (let i = 0; i < results.songs.length; i++) {
+                    if (album.song.indexOf(results.songs[i]._id) > -1) {
+                        results.songs[i].checked='true';
+                    }
+                }
+                res.render('album1_form', {title: 'Create Album', album: album,artists: results.artists,genres: results.genres, errors: errors.array()});
+            });
+            return;
+        }
+        else{
+            Album.findByIdAndUpdate(req.params.id, album,{},function (err,thealbum){
+              if(err){return next(err);}
+              res.redirect(thealbum.url);
+            });
+        }
+    }
+    
+];

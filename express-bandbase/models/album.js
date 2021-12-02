@@ -22,12 +22,6 @@ AlbumSchema.virtual('releaseDate').get(function () {
         return releaseDate;
     });
 
-AlbumSchema
-    .virtual('album')
-    .get(function () {
-        return this.title;
-    });
-
 // Virtual for author's URL
 AlbumSchema
     .virtual('url')

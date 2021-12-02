@@ -95,24 +95,70 @@ exports.genre_create_post =  [
     }
 ];
 
-// Handle Artist delete on POST.
+// Handle Artist delete on GET.
 exports.genre_delete_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Genre delete GET');
+    async.parallel({
+        genre: function (callback) {
+            Genre.findById(req.params.id).exec(callback);
+        },
+        genre_albums: function(callback) {
+            Album.find({ 'genre': req.params.id })
+                .exec(callback);
+        },
+    },function (err, results){
+        if(err){return next(err);}
+        res.render('genre_delete',{title: 'Delete genre', genre: results.genre, genre_albums: results.genre_albums})
+    });
 };
 
 
 // Handle Artist delete on POST.
 exports.genre_delete_post = function(req, res, next) {
-    res.send('NOT IMPLEMENTED: Genre delete POST');
+    async.parallel({
+        genre: function (callback) {
+            Genre.findById(req.params.genreid).exec(callback);
+        },
+        genre_albums: function(callback) {
+            Album.find({ 'genre': req.params.id })
+                .exec(callback);
+        },
+    },function (err, results){
+        if(err){return next(err);}
+        if (results.genre_albums.length > 0) {
+            // Author has books. Render in same way as for GET route.
+            res.render('genre_delete', { title: 'Delete Genre', genre: results.genre,genre_albums: results.genre_albums} );
+            return;
+        }
+        else{
+            Genre.findByIdAndRemove(req.body.genreid, function deleteGenre(err){
+                if(err){return next(err);}
+
+                res.redirect('/discover/genres')
+            });
+        }
+    });
 };
 
 // Display Artist update form on GET.
 exports.genre_update_get = function(req, res, next) {
-    res.render('genre_form', { title: 'Update Genre ' });
+    async.parallel({
+        genre: function (callback) {
+            Genre.findById(req.params.id).exec(callback);
+        },
+    },function (err,results){
+        if(err){return next(err);}
+        if(results.genre == null){
+            var err = new Error('Genre not found');
+            err.status = 404;
+            return next(err);
+        }
+        res.render('genre_form', { title: 'Update Genre ', genre: results.genre });
+    })
+
 };
 
 // Handle Artist update on POST.
-exports.genre_update_post = function(req, res, next) {
+exports.genre_update_post = [
     // Validate and santize the name field.
     body('name', 'Genre name required').trim().isLength({ min: 1 }).escape(),
 
@@ -125,7 +171,7 @@ exports.genre_update_post = function(req, res, next) {
             // Create a genre object with escaped and trimmed data.
             var genre = new Genre(
                 {name: req.body.name,
-                _id: req.body.id,
+                _id: req.params.id,
                 }
             );
 
@@ -142,4 +188,4 @@ exports.genre_update_post = function(req, res, next) {
                 })
             }
         }
-};
+];
