@@ -65,15 +65,6 @@ block content
                     label(for='releaseDate') Release Date:
                     input#releaseDate(type='date' name = 'data_of_release' value=(undefined === song ? '' : song.data_of_release))
                 div
-                    label(for='album') Album:
-                        select#album(type='select', placeholder='Select an Album' name= 'album' required='false')
-                            - albums.sort(function (a,b){let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
-                            for album in albums
-                                if song
-                                    option(value=album._id selected=(album._id.toString() === song.album._id.toString() ? 'selected' : false)) #{album.title}
-                                else
-                                    option(value=album._id) #{album.title}
-                div
                     label(for='URL_videoclip') URL Videoclip:
                     input#URL_videoclip(type='text', name='URL_videoclip' value=(undefined === song ? '' : song.URL_videoclip))
                 button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Submit

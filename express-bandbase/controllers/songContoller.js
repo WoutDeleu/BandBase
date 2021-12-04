@@ -23,7 +23,6 @@ exports.song_detail = function(req, res, next) {
         song: function (callback) {
             Song.findById(req.params.id)
                 .populate('artist')
-                .populate('album')
                 .exec(callback);
         },
     },function (err, results){
@@ -45,12 +44,9 @@ exports.song_create_get = function(req, res, next) {
         artists: function (callback){
             Artist.find(callback);
         },
-        albums: function (callback){
-            Album.find(callback);
-        }
     },function (err,results){
         if(err){return next(err);}
-        res.render('song_form', {title: 'Create Song ', artists: results.artists, albums: results.albums });
+        res.render('song_form', {title: 'Create Song ', artists: results.artists });
     });
 };
 
@@ -60,7 +56,6 @@ exports.song_create_post = [
         body('title', 'Song Title is required').trim().isLength({min: 1}).escape(),
         body('data_of_release').optional({ checkFalsy: true }).isISO8601().toDate(),
         body('artist.*').escape(),
-        body('album.*').escape(),
 
 
         (req,res,next) => {
@@ -70,11 +65,10 @@ exports.song_create_post = [
                 title: req.body.title,
                 data_of_release: req.body.data_of_release,
                 artist: req.body.artist,
-                album: req.body.album,
                 URL_videoclip: req.body.URL_videoclip
             });
             if (!errors.isEmpty()) {
-                res.render('song_form', {title: 'Create Song', song: song, artists:results.artists, albums:results.albums, errors: errors.array()});
+                res.render('song_form', {title: 'Create Song', song: song, artists:results.artists, errors: errors.array()});
                 return;
             }
             else{
@@ -119,13 +113,10 @@ exports.song_delete_post = function(req, res, next) {
 exports.song_update_get = function(req, res, next) {
     async.parallel({
         song: function (callback) {
-            Song.findById(req.params.id).populate('artist').populate('album').exec(callback);
+            Song.findById(req.params.id).populate('artist').exec(callback);
         },
         artists: function (callback){
             Artist.find(callback);
-        },
-        albums: function (callback){
-            Album.find(callback);
         },
     },function (err,results){
         if(err){return next(err);}
@@ -134,7 +125,7 @@ exports.song_update_get = function(req, res, next) {
             err.status = 404;
             return next(err);
         }
-        res.render('song_form', { title: 'Update song ', song: results.song, artists: results.artists, albums: results.albums });
+        res.render('song_form', { title: 'Update song ', song: results.song, artists: results.artists});
     })
 };
 
@@ -144,7 +135,6 @@ exports.song_update_post = [
         body('title', 'Song Title is required').trim().isLength({min: 1}).escape(),
         body('data_of_release').optional({ checkFalsy: true }).isISO8601().toDate(),
         body('artist.*').escape(),
-        body('album.*').escape(),
         // Process request after validation and sanitization.
         (req, res, next) => {
 
@@ -152,11 +142,10 @@ exports.song_update_post = [
             const errors = validationResult(req);
 
             // Create a genre object with escaped and trimmed data.
-            var song = new Genre(
+            var song = new Song(
                 {title: req.body.title,
                     data_of_release: req.body.data_of_release,
                     artist: req.body.artist,
-                    album: req.body.album,
                     URL_videoclip: req.body.URL_videoclip,
                     _id: req.params.id
                 }

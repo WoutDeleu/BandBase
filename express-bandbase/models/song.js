@@ -9,7 +9,6 @@ var SongSchema = new Schema({
     URL_videoclip: {type: String, required: false,},
     data_of_release: {type: Date, required: true},
     artist: {type: Schema.Types.ObjectId, ref: 'Artist', required: true},
-    album: {type: Schema.Types.ObjectID, ref: 'Album'}
 });
 
 //Virtual for the release

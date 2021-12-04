@@ -53,11 +53,6 @@ block content
             //Artist Query
             h3 Artist:
                 a(href=song.artist.url) #{song.artist.name}
-            if song.album
-                h3 Album:
-                    a(href=song.album.url) #{song.album.title}
-            else
-                h3 Album: /
 
             h3 Release Date: #{song.releaseDate}
 
