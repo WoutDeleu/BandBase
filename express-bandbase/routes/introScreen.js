@@ -6,4 +6,11 @@ router.get('/', function(req, res, next) {
     res.render('introScreen', {title: 'Intro Screen - Band Base' });
 });
 
+//AJAX
+//var ourRequest = new XMLHttpRequest();
+//ourRequest.open('GET', "/randomBandImages/1240.jpg");
+//ourRequest.onload = function() {
+
+//};
+
 module.exports = router;
