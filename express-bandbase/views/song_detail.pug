@@ -61,17 +61,15 @@ block content
 
             h3 Release Date: #{song.releaseDate}
 
-            script.
-                function myFunction() {
-                    var str = url_videoclip;
-                    var res = str.split("=");
-                    var embeddedUrl = "https://www.youtube.com/embeded/"+res[1];
-                    return embeddedUrl;
-                }
-
+            - let vid = song.URL_videoclip;
+            - var URL_videoclip = function(vid){
+            -        var urlSplit = vid.split("/");
+            -        var sauce = urlSplit[urlSplit.length - 1].split("=")[1];
+            -        return "http://www.youtube.com/embed/" + sauce;
+            - }
 
             iframe(id = videoPlayer, type='video', width='640', height='390',
-                src="https://www.youtube.com/embed/2gpFiLmfRLM",autoplay
+                src=URL_videoclip(vid),autoplay
                 frameborder='0',)
             //src=song.URL_videoclip
             //Normaal : https://www.youtube.com/watch?v=2gpFiLmfRLM
