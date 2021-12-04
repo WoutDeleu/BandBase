@@ -61,9 +61,22 @@ block content
 
             h3 Release Date: #{song.releaseDate}
 
+            script.
+                function myFunction() {
+                    var str = url_videoclip;
+                    var res = str.split("=");
+                    var embeddedUrl = "https://www.youtube.com/embeded/"+res[1];
+                    return embeddedUrl;
+                }
+
+
             iframe(id = videoPlayer, type='video', width='640', height='390',
-                src=song.URL_videoclip,autoplay
+                src="https://www.youtube.com/embed/2gpFiLmfRLM",autoplay
                 frameborder='0',)
+            //src=song.URL_videoclip
+            //Normaal : https://www.youtube.com/watch?v=2gpFiLmfRLM
+            //Embeded : https://www.youtube.com/embed/2gpFiLmfRLM
+            //Vervang watch?v= <-> door embeded/
 
             hr
             p
