@@ -6,41 +6,24 @@ function searchArtist(){
         .then(response => response.json())
         .then( data =>{
             let output = ''
+            output += `
+                <h1>${artist}</h1>
+            `
             data.forEach(function (object){
                 output +=`
-                    <ul>
-                       <li>${object.lineup}</li>
-                    </ul>  
-            `
+                <button class="accordion">${object.venue.location} / ${object.datetime}</button>
+                 <div class ="panel">
+                    <p>testing</p>
+                 </div>
+                
+            
+`
                 })
+
             document.getElementById("bandsInTown").innerHTML = output;
             })
 
 
+
 }
 
-
-
-
-
-
-fetch("", {
-    "method": "GET",
-
-})
-    .then(response => response.json())
-    .then(data => {
-        let output = '';
-
-        data.forEach(function (object){
-            output +=`
-            <ul>
-                <li>${object.lineup}</li>
-            </ul>           
-
-
-        `;
-        })
-        document.getElementById('bandsInTown').innerHTML = output;
-        console.log(output);
-    });

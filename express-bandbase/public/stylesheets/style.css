@@ -236,7 +236,35 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
 .imgContainer{float:left;}
 .w3-orangered{color: #fd5826}
+.w3-dark-dark-grey{background-color: #222222}
 #cookie{background: #fd5826; color: #000; transition: 400ms;margin-left: 120px; position: center; text-align: center; width: 600px}
 .cookie-container{background: #fd5826; color: #000; transition: 400ms;margin-left: 120px; position: center; text-align: center; width: 600px;display: none}
 .cookie-container.active{background: #fd5826; color: #000; transition: 400ms;margin-left: 120px; position: center; text-align: center; width: 600px;display: block}
 .cookie-container-a{background: #fd5826; color: #000; transition: 400ms }
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+
