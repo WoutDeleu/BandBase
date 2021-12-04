@@ -16,7 +16,11 @@ html
       #main {margin-left: 120px}
       #cookie{margin-left: 120px}
       @media only screen and (max-width: 600px){#main{margin-left:0} #cookie{margin-left:0}}
-
+      body {
+        background-image: url(/images/introBackground.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
 
   body.w3-black
     block nav
@@ -24,7 +28,7 @@ html
 
     block content
 
-    div#cookie.cookie-container.w3-round-large.w3-padding-medium.w3-display-topmiddle.w3-center
+    div(class = 'w3-round-large w3-padding-large w3-center cookie-container')#cookie
       p.
         We use cookies in this website to give you the best experience on our
         website. To find out more, read our privacy policy and cookie policy.

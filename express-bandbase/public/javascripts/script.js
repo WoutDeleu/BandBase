@@ -7,15 +7,17 @@ fetch("https://music-news-api.p.rapidapi.com/news/", {
     }
 })  .then(response => response.json())
     .then(data => {
-    let output = '<h2>News<h2>';
+    let output = '';
     data.forEach(function (object){
         output += `
-        <div>
-            <h1>${object.title}</h1>
+        <div class="w3-half">
+            <h3 class="w3-orangered">${object.title}</h3>
+            <p class="w3-text-grey w3-hover-text-white"><a href="${object.url}" target="_blank">${object.url}</a></p>
+            <p><dfn>${object.source}</dfn></p>
         </div>
         `;
     });
-        document.getElementById('newsOutput').innerHTML = data;
+        document.getElementById('newsOutput').innerHTML = output;
         console.log(data);
 
     })

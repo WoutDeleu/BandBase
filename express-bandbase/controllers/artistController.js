@@ -103,9 +103,13 @@ exports.artist_delete_get = function(req, res, next) {
             Album.find({ 'artist': req.params.id })
                 .exec(callback);
         },
+        artist_songs: function(callback) {
+            Song.find({ 'artist': req.params.id })
+                .exec(callback);
+        },
     },function (err, results){
         if(err){return next(err);}
-        res.render('artist_delete',{title: 'Delete Album', artist: results.artist, artist_albums: results.artist_albums})
+        res.render('artist_delete',{title: 'Delete Album', artist: results.artist, artist_albums: results.artist_albums, artist_songs: results.artist_songs})
     });
 };
 
@@ -119,11 +123,19 @@ exports.artist_delete_post = function(req, res, next) {
             Album.find({ 'artist': req.params.id })
                 .exec(callback);
         },
+        artist_songs: function(callback) {
+            Song.find({ 'artist': req.params.id })
+                .exec(callback);
+        },
     },function (err, results){
         if(err){return next(err);}
         if (results.artist_albums.length > 0) {
             // Author has books. Render in same way as for GET route.
-            res.render('artist_delete', { title: 'Delete Artist', artist: results.artist,artist_albums: results.artist_albums} );
+            res.render('artist_delete', { title: 'Delete Artist', artist: results.artist,artist_albums: results.artist_albums,  artist_songs: results.artist_songsv} );
+            return;
+        }
+        else if(results.artist_songs.length > 0){
+            res.render('artist_delete', { title: 'Delete Artist', artist: results.artist,artist_albums: results.artist_albums,  artist_songs: results.artist_songs} );
             return;
         }
         else{

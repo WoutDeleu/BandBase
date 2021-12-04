@@ -35,9 +35,8 @@ SongSchema
         var url = song.URL_videoclip
         var urlSplit = url.split("/");
         var sauce = urlSplit[urlSplit.length - 1].split("=")[1]
-        var defUrl = "http://www.youtube.com/embed/" + sauce
-        return defUrl
-    })
+        return "http://www.youtube.com/embed/" + sauce
+    });
 
 //Export model
 module.exports = mongoose.model('Song', SongSchema);
