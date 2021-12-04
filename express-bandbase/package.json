@@ -21,9 +21,11 @@
     "mongodb": "^4.1.4",
     "mongoose": "^6.0.13",
     "morgan": "^1.10.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.2",
     "serve-favicon": "^2.5.0",
-    "unirest": "^0.6.0"
+    "unirest": "^0.6.0",
+    "xhr2": "^0.2.1",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

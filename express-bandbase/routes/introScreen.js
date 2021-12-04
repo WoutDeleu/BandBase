@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,10 +8,10 @@ router.get('/', function(req, res, next) {
 });
 
 //AJAX
-//var ourRequest = new XMLHttpRequest();
-//ourRequest.open('GET', "/randomBandImages/1240.jpg");
-//ourRequest.onload = function() {
+var ourRequest = new XMLHttpRequest();
+ourRequest.open('GET', "/randomBandImages/1240.jpg");
+ourRequest.onload = function() {
 
-//};
+};
 
 module.exports = router;
