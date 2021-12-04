@@ -29,6 +29,7 @@ block nav
                     {width: 25%}
 
 block content
+    script(src='javascripts/bandsInTownApi.js')
     style.
         #main {
             margin-left: 120px
@@ -41,5 +42,10 @@ block content
         }
     div#main.w3-padding-large
         div#home.w3-container.w3-padding-32.w3-center.w3-black
+            form(onsubmit= "searchArtist(); event.preventDefault(); return false").w3-container.w3-padding-32.w3-center.w3-black
+                    label(for="artistInput") Artist Name:
+                    input#artistInput(type='search' placeholder='Name')
+                    button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Search
+
             div#bandsInTown
             script(src='javascripts/bandsInTownApi.js', type="module")
