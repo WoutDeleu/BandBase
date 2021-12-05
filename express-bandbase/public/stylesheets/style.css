@@ -269,3 +269,42 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 }
 
 
+.slideshow {
+  width:100%;
+  height:auto;
+  padding:5px;
+  box-sizing:border-box;
+  position:relative;
+}
+
+.slideshow img {
+  position:absolute;
+  animation:slideshow 140s infinite;
+  opacity:100%;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes slideshow {
+  25%{opacity:1;
+  }
+  45%{
+    opacity:0;
+  }
+}
+.slideshow img:nth-child(9){animation-delay:0s;}
+.slideshow img:nth-child(8){animation-delay:20s;}
+.slideshow img:nth-child(7){animation-delay:40s;}
+.slideshow img:nth-child(6){animation-delay:60s;}
+.slideshow img:nth-child(5){animation-delay:80s;}
+.slideshow img:nth-child(4){animation-delay:100s;}
+.slideshow img:nth-child(3){animation-delay:120s;}
+
+adress {
+  display: block;
+  font-style: italic;
+}
+quote {
+  font-style: inherit;
+  font-family: fantasy;
+}

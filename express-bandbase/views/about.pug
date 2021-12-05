@@ -59,6 +59,32 @@ block content
     div.w3-quarter.w3-padding-large#picture1
         img(src='/images/Elian.jpg', height='240', width='241').w3-center
         p Elian Vantomme
+        #EmailE
+            button.button(type='button' onclick="loadEmailElian()") Show Email
     div.w3-quarter#picture2
         img.right-img(src='/images/Wout.jpg', height='240', width='275').w3-center
         p Wout Deleu
+        div#EmailW
+            button.button(type='button' onclick="loadEmailWout()") Show Email
+
+    script.
+        function loadEmailWout() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("EmailW").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "EmailW.txt", true);
+            xhttp.send();
+        }
+        function loadEmailElian() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("EmailE").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "EmailE.txt", true);
+            xhttp.send();
+        }
