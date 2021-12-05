@@ -46,14 +46,15 @@ block content
             }
         }
     div#main.w3-padding-large
-        div#home.w3-container.w3-padding-32.w3-center.w3-black
-            h1 #{title}
-            form(method='POST' action='').w3-container.w3-padding-32.w3-center.w3-black
-                div
-                    label(for='name') Genre:
-                    input#name(type='text', placeholder='Heavy Metal, Hard Rock etc.' name='name' value=(undefined === genre ? '' : genre.name))
+        div#home.w3-container.w3-padding-32.w3-black
+            h1.w3-center #{title}
+            div.inputContainer.w3-padding-large
+                form(method='POST' action='')
+                    div
+                        label(for='name') Genre:
+                        input#name(type='text', placeholder='Heavy Metal, Hard Rock etc.' name='name' value=(undefined === genre ? '' : genre.name))
 
-                button.w3-btn.w3-dark-grey.w3-hover-white(type='submit') Submit
+                    button.w3-btn.w3-dark-grey.w3-hover-white.submitBtn(type='submit') Submit
 
             if errors
                 ul

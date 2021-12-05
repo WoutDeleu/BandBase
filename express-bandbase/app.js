@@ -11,6 +11,7 @@ var newsRouter = require('./routes/news');
 var discoverRouter = require('./routes/discover');
 var aboutRouter = require('./routes/about');
 var myBandsRouter = require('./routes/myBands');
+var cookieRouter = require('./routes/cookiePolicy');
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use('/news', newsRouter);
 app.use('/discover', discoverRouter);
 app.use('/about', aboutRouter);
 app.use('/mybands',myBandsRouter);
+app.use('/cookiePolicy', cookieRouter);
 
 
 // catch 404 and forward to error handler
