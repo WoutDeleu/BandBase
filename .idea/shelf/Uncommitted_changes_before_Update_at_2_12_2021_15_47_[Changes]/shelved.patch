@@ -1,0 +1,19 @@
+Index: express-bandbase/views/album_detail.pug
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>extends layout\r\nblock nav\r\n    nav.w3-sidebar.w3-bar-block.w3-small.w3-hide-small.w3-center\r\n        a(href='/introscreen')\r\n            img(src = '/images/LogoResized.png' style='width:100%').\r\n        a(href='/news').w3-bar-item.w3-button.w3-padding-large.w3-hover-black NEWS\r\n            a(href='/about').w3-bar-item.w3-button.w3-padding-large.w3-hover-black ABOUT\r\n            hr\r\n            a(href='/mybands').w3-bar-item.w3-button.w3-padding-large.w3-hover-black MY BANDS\r\n            a(href='/discover').w3-bar-item.w3-button.w3-padding-large.w3-black DISCOVER\r\n    div.w3-top.w3-hide-large.w3-hide-medium#myNavBar\r\n        div.w3-bar.w3-black.w3-opacity.w3-hover-opacity-off.w3-center.w3-small\r\n            a(href='/introscreen').w3-bar-item.w3-button HOME\r\n                style.\r\n                    {width:25%}\r\n            a(href='/news').w3-bar-item.w3-button NEWS\r\n                style.\r\n                    {width: 25%}\r\n            a(href='/about').w3-bar-item.w3-button ABOUT\r\n                style.\r\n                    {\r\n                        width: 25%\r\n                    }\r\n            a(href='news.html').w3-bar-item.w3-button MY BANDS\r\n                style.\r\n                    {width: 25%}\r\n            a(href='/discover').w3-bar-item.w3-button DISCOVER\r\n                style.\r\n                    {width: 25%}\r\n\r\nblock content\r\n    style.\r\n        #main {\r\n            margin-left: 120px\r\n        }\r\n\r\n        @media only screen and (max-width: 600px) {\r\n            #main {\r\n                margin-left: 0\r\n            }\r\n        }\r\n    div#main.w3-padding-large\r\n        div#home.w3-container.w3-padding-32.w3-center.w3-black\r\n\r\n            h1 Album: #{album.title}\r\n                h3 Artist:\r\n                    a(href=album.artist.url) #{ album.artist.name}\r\n                h3 Release Date: #{album.releaseDate}\r\n                h4 Songs\r\n\r\n                dl\r\n                    each song in album.song\r\n                        a(href=song.url) #{song.title}\r\n\r\n                    else\r\n                        p This album has no songs\r\n\r\n\r\n                hr\r\n                p\r\n                    a(href=album.url + '/update') UPDATE ALBUM\r\n                p\r\n                    a(href=album.url + '/delete') DELETE ALBUM
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/express-bandbase/views/album_detail.pug b/express-bandbase/views/album_detail.pug
+--- a/express-bandbase/views/album_detail.pug	(revision efebb55587557c0ba9f8a707222c3be45828c2b6)
++++ b/express-bandbase/views/album_detail.pug	(date 1638456462825)
+@@ -55,7 +55,7 @@
+                     else
+                         p This album has no songs
+ 
+-
++            div.w3-bottombar
+                 hr
+                 p
+                     a(href=album.url + '/update') UPDATE ALBUM

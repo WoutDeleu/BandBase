@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6f5ba695-0bd3-4c94-aca4-9c6b50434ede" name="Changes" comment="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="package.json" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/express-bandbase/models/song.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/models/genre.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/models/artist.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/models/album.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/app.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/routes/discover.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/public/javascripts/cookie.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/public/javascripts/bandsInTownApi.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/public/javascripts/script.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/controllers/songContoller.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/controllers/genreController.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/controllers/artistController.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/express-bandbase/controllers/albumController.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="20dBLB4Hz9AnOycdSc7f3OjyPRT" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ChangesTree.GroupingKeys" value="" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.18.1" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.17.34" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/express-bandbase" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Gebruiker\WebstormProjects\bandbase\express-bandbase\views" />
+      <recent name="C:\Users\Gebruiker\WebstormProjects\bandbase\express-bandbase" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Gebruiker\WebstormProjects\bandbase\express-bandbase" />
+      <recent name="C:\Users\Gebruiker\WebstormProjects\bandbase" />
+      <recent name="C:\Users\Gebruiker\WebstormProjects\bandbase\" />
+      <recent name="C:\Users\Gebruiker\WebstormProjects\bandbase\express-bandbase\public\images" />
+      <recent name="C:\Users\Gebruiker\WebstormProjects\bandbase\express-band_base\public\images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.script.js">
+    <configuration name="script.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/express-bandbase/public/javascripts/script.js" working-dir="$PROJECT_DIR$/express-bandbase/public/javascripts">
+      <method v="2" />
+    </configuration>
+    <configuration name="devstart" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/express-bandbase/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="devstart" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.script.js" />
+        <item itemvalue="npm.devstart" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6f5ba695-0bd3-4c94-aca4-9c6b50434ede" name="Changes" comment="" />
+      <created>1636364525344</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636364525344</updated>
+      <workItem from="1636364526595" duration="488000" />
+      <workItem from="1636365098769" duration="387000" />
+      <workItem from="1636482817944" duration="4450000" />
+      <workItem from="1636558335848" duration="1113000" />
+      <workItem from="1636633608528" duration="2109000" />
+      <workItem from="1636638989272" duration="7784000" />
+      <workItem from="1636798394555" duration="7911000" />
+      <workItem from="1636971941411" duration="194000" />
+      <workItem from="1636972332030" duration="135000" />
+      <workItem from="1636990003121" duration="1541000" />
+      <workItem from="1637083174445" duration="1714000" />
+      <workItem from="1637084919586" duration="9946000" />
+      <workItem from="1637098373766" duration="2326000" />
+      <workItem from="1637100738260" duration="86000" />
+      <workItem from="1637145737604" duration="10176000" />
+      <workItem from="1637171513375" duration="959000" />
+      <workItem from="1637240542144" duration="45000" />
+      <workItem from="1637414426950" duration="2874000" />
+      <workItem from="1637418599982" duration="5386000" />
+      <workItem from="1637569202423" duration="331000" />
+      <workItem from="1637603684032" duration="10038000" />
+      <workItem from="1637686596297" duration="12264000" />
+      <workItem from="1637702184453" duration="80000" />
+      <workItem from="1637749495182" duration="9588000" />
+      <workItem from="1637770948163" duration="1421000" />
+      <workItem from="1638000673959" duration="28252000" />
+      <workItem from="1638093079775" duration="667000" />
+      <workItem from="1638105542460" duration="1364000" />
+      <workItem from="1638207464731" duration="2036000" />
+      <workItem from="1638211979623" duration="734000" />
+      <workItem from="1638219753217" duration="1330000" />
+      <workItem from="1638268690648" duration="324000" />
+      <workItem from="1638269794389" duration="353000" />
+      <workItem from="1638275057902" duration="3365000" />
+      <workItem from="1638278841983" duration="19549000" />
+      <workItem from="1638362532712" duration="253000" />
+      <workItem from="1638366577980" duration="11423000" />
+      <workItem from="1638434542795" duration="4498000" />
+      <workItem from="1638456269194" duration="19684000" />
+      <workItem from="1638518476954" duration="11668000" />
+      <workItem from="1638607081393" duration="22743000" />
+      <workItem from="1638703422807" duration="15685000" />
+    </task>
+    <task id="LOCAL-00001" summary="Testing">
+      <created>1636364720151</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1636364720151</updated>
+    </task>
+    <task id="LOCAL-00002" summary="De html is erin gezet als een template samen met de css files&#10;Het is zeker nog niet in orde zal er later nog aan doorwerken">
+      <created>1636490405402</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636490405402</updated>
+    </task>
+    <task id="LOCAL-00003" summary="De html is erin gezet als een template samen met de css files&#10;Het is zeker nog niet in orde zal er later nog aan doorwerken">
+      <created>1636649014289</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636649014289</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Heb er al verder aan gewerkt, discover is enkel nog een template zal later worden vervangen door een database.&#10;Kan de nav bar aan de linkerkant blijven staan of moet deze vanboven komen?">
+      <created>1636807231482</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636807231482</updated>
+    </task>
+    <task id="LOCAL-00005" summary="De express toegevoegd aan het project">
+      <created>1637083654954</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1637083654954</updated>
+    </task>
+    <task id="LOCAL-00006" summary="De express toegevoegd aan het project">
+      <created>1637085177126</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1637085177126</updated>
+    </task>
+    <task id="LOCAL-00007" summary="FUCK PUG">
+      <created>1637092160221</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1637092160221</updated>
+    </task>
+    <task id="LOCAL-00008" summary="FUCK PUG">
+      <created>1637093275402</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1637093275402</updated>
+    </task>
+    <task id="LOCAL-00009" summary="index.pug is aangemaakt nog verder toevoegen van de pagina's kan via de routes">
+      <created>1637098350320</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1637098350320</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Heb alles al even ver kunnen brengen of toen ik werkte via de .html files&#10;TODO&#10;- database implementeren&#10;- linken tussen de pagina's opzetten&#10;- bekijken welke andere zaken er nog bij moeten die verplicht zijn">
+      <created>1637100815195</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1637100815195</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Begin van de Database is opgemaakt mss dat we werken met een heel andere pagina's voor de database?">
+      <created>1637162486078</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1637162486078</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Database in toegevoegd, maar de functies zijn nog niet ingevuld">
+      <created>1637422736753</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1637422736753</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Heb nog problemen met de datbanken in orde te brengen en ook met de routes zelf. Programma werkt voorlopig niet door een callback error">
+      <created>1637617920353</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1637617920353</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Genre is toegevoegd enkel nog delete en update, de rest moet nog. Artist is ook bijna even ver&#10;Album en Song nog niet">
+      <created>1637702253990</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1637702253990</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Als de error weg is bij artist add artist zou de database bijna af zijn">
+      <created>1637763546177</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1637763546178</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Icon toegevoed">
+      <created>1637771602518</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1637771602518</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Einde van de database is in zicht">
+      <created>1638036983501</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1638036983501</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Einde van de database is in zicht">
+      <created>1638037168942</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1638037168942</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Einde van de database is in zicht">
+      <created>1638037229338</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1638037229338</updated>
+    </task>
+    <task id="LOCAL-00020" summary="The end is near, we kunnen alles al toevoegen en bekijken enkel nog deleten en updaten van de database.">
+      <created>1638287672383</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1638287672383</updated>
+    </task>
+    <task id="LOCAL-00021" summary="RRRRREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE">
+      <created>1638305727585</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1638305727585</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Genre is af de rest bijna">
+      <created>1638456451734</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1638456451734</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Genre is af de rest bijna">
+      <created>1638456543862</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1638456543862</updated>
+    </task>
+    <task id="LOCAL-00024" summary="DATABASE IS AF (er kunnen wel nog zaken bij als attributen)">
+      <created>1638475526589</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1638475526589</updated>
+    </task>
+    <task id="LOCAL-00025" summary="De banner voor de cookie is toegevoegd, enkel nog zorgen dat deze weg gaat wanneer we erop klikken">
+      <created>1638481638843</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1638481638843</updated>
+    </task>
+    <task id="LOCAL-00026" summary="De banner voor de cookie is toegevoegd, enkel nog zorgen dat deze weg gaat wanneer we erop klikken">
+      <created>1638607871871</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1638607871871</updated>
+    </task>
+    <task id="LOCAL-00027" summary="HEEE HEEE">
+      <created>1638614245826</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1638614245826</updated>
+    </task>
+    <task id="LOCAL-00028" summary="bandsInTownApi laten werken">
+      <created>1638622218789</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1638622218789</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Song is aan gepast het album wordt niet meer weergeven voor geen errors te hebben bij update">
+      <created>1638623111994</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1638623111994</updated>
+    </task>
+    <task id="LOCAL-00030" summary="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan">
+      <created>1638631578683</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1638631578683</updated>
+    </task>
+    <task id="LOCAL-00031" summary="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan">
+      <created>1638717760222</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1638717760222</updated>
+    </task>
+    <task id="LOCAL-00032" summary="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan">
+      <created>1638723283569</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1638723283569</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Testing" />
+    <MESSAGE value="De html is erin gezet als een template samen met de css files&#10;Het is zeker nog niet in orde zal er later nog aan doorwerken" />
+    <MESSAGE value="Heb er al verder aan gewerkt, discover is enkel nog een template zal later worden vervangen door een database.&#10;Kan de nav bar aan de linkerkant blijven staan of moet deze vanboven komen?" />
+    <MESSAGE value="Test" />
+    <MESSAGE value="De express toegevoegd aan het project" />
+    <MESSAGE value="FUCK PUG" />
+    <MESSAGE value="index.pug is aangemaakt nog verder toevoegen van de pagina's kan via de routes" />
+    <MESSAGE value="Heb alles al even ver kunnen brengen of toen ik werkte via de .html files&#10;TODO&#10;- database implementeren&#10;- linken tussen de pagina's opzetten&#10;- bekijken welke andere zaken er nog bij moeten die verplicht zijn" />
+    <MESSAGE value="Begin van de Database is opgemaakt mss dat we werken met een heel andere pagina's voor de database?" />
+    <MESSAGE value="Database in toegevoegd, maar de functies zijn nog niet ingevuld" />
+    <MESSAGE value="Heb nog problemen met de datbanken in orde te brengen en ook met de routes zelf. Programma werkt voorlopig niet door een callback error" />
+    <MESSAGE value="Genre is toegevoegd enkel nog delete en update, de rest moet nog. Artist is ook bijna even ver&#10;Album en Song nog niet" />
+    <MESSAGE value="Als de error weg is bij artist add artist zou de database bijna af zijn" />
+    <MESSAGE value="Icon toegevoed" />
+    <MESSAGE value="Einde van de database is in zicht" />
+    <MESSAGE value="The end is near, we kunnen alles al toevoegen en bekijken enkel nog deleten en updaten van de database." />
+    <MESSAGE value="RRRRREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE" />
+    <MESSAGE value="Genre is af de rest bijna" />
+    <MESSAGE value="DATABASE IS AF (er kunnen wel nog zaken bij als attributen)" />
+    <MESSAGE value="De banner voor de cookie is toegevoegd, enkel nog zorgen dat deze weg gaat wanneer we erop klikken" />
+    <MESSAGE value="HEEE HEEE" />
+    <MESSAGE value="bandsInTownApi laten werken" />
+    <MESSAGE value="Song is aan gepast het album wordt niet meer weergeven voor geen errors te hebben bij update" />
+    <MESSAGE value="Accordion werkt" />
+    <MESSAGE value="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan" />
+    <option name="LAST_COMMIT_MESSAGE" value="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan" />
+  </component>
+</project>
