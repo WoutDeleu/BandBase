@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f5ba695-0bd3-4c94-aca4-9c6b50434ede" name="Changes" comment="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan" />
+=======
+  <component name="ChangeListManager">
+    <list default="true" id="d561aa82-374f-49a1-8c47-5e2f5f27f01f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> 1ac6917572eb816de47f620695336e1afd25b5dc
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -51,11 +59,18 @@
     <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="21s7cQ0t7ZyhzIj0VQ09XhZgmls" />
+>>>>>>> 1ac6917572eb816de47f620695336e1afd25b5dc
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ChangesTree.GroupingKeys" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -384,6 +399,25 @@
       <updated>1638723283569</updated>
     </task>
     <option name="localTasksCounter" value="33" />
+=======
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d561aa82-374f-49a1-8c47-5e2f5f27f01f" name="Changes" comment="" />
+      <created>1638718024782</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638718024782</updated>
+      <workItem from="1638718027624" duration="325000" />
+      <workItem from="1638723188789" duration="1286000" />
+    </task>
+>>>>>>> 1ac6917572eb816de47f620695336e1afd25b5dc
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,6 +433,7 @@
         </entry>
       </map>
     </option>
+<<<<<<< HEAD
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
@@ -429,5 +464,7 @@
     <MESSAGE value="Accordion werkt" />
     <MESSAGE value="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan" />
     <option name="LAST_COMMIT_MESSAGE" value="My bands is normaal af, geeft soms fouten door zaken die er bij andere niet opstaan" />
+=======
+>>>>>>> 1ac6917572eb816de47f620695336e1afd25b5dc
   </component>
 </project>
